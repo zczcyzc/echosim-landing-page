@@ -49,6 +49,22 @@ html[data-theme="dark"] .btn-ghost {
   color: #fff;
 }
 
+/* 中文注释：暗黑模式下的大数字与标识对比度提升，使用品牌紫粉色柔和亮调，确保高对比度 legibility 与精致视觉体验 */
+html[data-theme="dark"] .step-number {
+  color: rgba(224, 168, 198, 0.35);
+}
+
+html[data-theme="dark"] .soul-chapter__num {
+  color: rgba(224, 168, 198, 0.25);
+}
+
+html[data-theme="dark"] .credo-item__num {
+  color: #c084a3;
+}
+
+
+
+
 .theme-toggle-btn {
   background: none;
   border: none;
@@ -1338,7 +1354,7 @@ body::before {
 }
 .scene-dead {
   font-size: 0.78rem;
-  color: var(--text-faint);
+  color: var(--text);
   background: var(--bg-alt);
   border-radius: 0.55rem;
   padding: 0.38rem 0.7rem;
