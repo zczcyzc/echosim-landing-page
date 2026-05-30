@@ -1481,7 +1481,7 @@ body::before {
 /* ─── Reserve section (waitlist) ─────────────────────────────────────────── */
 .reserve-section {
   padding: 7rem 0;
-  background: linear-gradient(160deg, #2a1730 0%, #1a1020 100%);
+  background: linear-gradient(160deg, var(--bg-alt) 0%, var(--bg) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1499,8 +1499,8 @@ body::before {
 .reserve-tag {
   display: inline-block;
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.07);
+  color: var(--primary);
+  background: rgba(142, 75, 110, 0.08);
   padding: 0.3rem 0.85rem;
   border-radius: 100px;
   margin-bottom: 1.5rem;
@@ -1510,13 +1510,13 @@ body::before {
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 1rem;
 }
-.reserve-title em { font-style: italic; color: rgba(255,255,255,0.65); }
+.reserve-title em { font-style: italic; color: var(--primary); }
 .reserve-sub {
   font-size: 1rem;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-muted);
   max-width: 480px;
   margin: 0 auto 2.5rem;
   line-height: 1.75;
@@ -1530,17 +1530,36 @@ body::before {
   flex: 1; min-width: 220px;
   padding: 0.8rem 1.25rem;
   border-radius: 100px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.07);
-  color: #fff;
+  border: 1px solid var(--outline);
+  background: var(--bg-card);
+  color: var(--text);
   font-family: var(--sans);
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.2s;
 }
-.reserve-input::placeholder { color: rgba(255,255,255,0.35); }
+.reserve-input::placeholder { color: var(--text-faint); }
 .reserve-input:focus { border-color: rgba(142,75,110,0.6); }
-.reserve-note { font-size: 0.8rem; color: rgba(255,255,255,0.35); min-height: 1.4em; }
+.reserve-note { font-size: 0.8rem; color: var(--text-faint); min-height: 1.4em; }
+
+/* Dark mode keeps the original deep-purple reserve look. */
+html[data-theme="dark"] .reserve-section {
+  background: linear-gradient(160deg, #2a1730 0%, #1a1020 100%);
+}
+html[data-theme="dark"] .reserve-tag {
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.07);
+}
+html[data-theme="dark"] .reserve-title { color: #fff; }
+html[data-theme="dark"] .reserve-title em { color: rgba(255,255,255,0.65); }
+html[data-theme="dark"] .reserve-sub { color: rgba(255,255,255,0.5); }
+html[data-theme="dark"] .reserve-input {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+}
+html[data-theme="dark"] .reserve-input::placeholder { color: rgba(255,255,255,0.35); }
+html[data-theme="dark"] .reserve-note { color: rgba(255,255,255,0.35); }
 
 /* ─── Footer v2 (dark) ───────────────────────────────────────────────────── */
 .footer-v2 {
