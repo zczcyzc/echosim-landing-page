@@ -832,6 +832,7 @@ body::before {
   padding: 0.6rem 1.1rem 0.9rem;
   border-top: 1px solid var(--outline);
 }
+.mock-footer-label { font-size: 0.72rem; font-weight: 700; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
 .mock-fill-animated {
   animation: fill-grow 2s ease-out forwards;
 }
