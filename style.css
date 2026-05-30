@@ -1873,7 +1873,7 @@ html[data-theme="dark"] .nav-mobile-menu {
   transform: translateY(0);
 }
 .hero-panel .hero-sub { margin-bottom: 0; }
-[data-theme="dark"] .hero-panel {
+html[data-theme="dark"] .hero-panel {
   /* 暗色模式下同样调整为 20% 透明度 (80% 不透明度) */
   background: rgba(9, 9, 11, 0.8);
   border-color: rgba(255, 255, 255, 0.12);
