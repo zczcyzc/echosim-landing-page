@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works — EchoSim</title>
+  <meta name="description"
+    content="Build your Echo, let it date for you, then review the chemistry report — three steps to a meaningful connection." />
+
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="How It Works — EchoSim" />
+  <meta property="og:description" content="Three steps to a meaningful connection on EchoSim." />
+  <meta property="og:url" content="https://echosim.ai/how-it-works/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <script>
+    // Prevent Flash of Unstyled Content (FOUC)
+    const savedTheme = localStorage.getItem('echosim-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner container">
+      <a href="/" class="logo"><img src="/logo.png" alt="" class="logo-img" />EchoSim</a>
+      <div class="nav-links">
+        <a href="/mission/" class="nav-link">Mission</a>
+        <a href="/how-it-works/" class="nav-link is-active" aria-current="page">How It Works</a>
+        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+        <a href="/reserve/" class="btn btn-primary btn-sm">Reserve My Spot</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <header class="page-hero">
+    <div class="container">
+      <p class="section-eyebrow">How It Works</p>
+      <h1 class="section-title" style="margin-bottom:1.5rem;">
+        Three steps to a<br /><em>meaningful connection.</em>
+      </h1>
+      <p class="page-hero-lead">
+        From building your Echo to reading the chemistry report, the whole loop takes minutes —
+        and most of it happens while you're living your life.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── 3 STEPS ──────────────────────────────────────────────────────────── -->
+  <section class="preview-section">
+    <div class="container">
+      <div class="preview-steps">
+
+        <!-- Step 01 -->
+        <div class="step-col reveal">
+          <div class="preview-step-label">
+            <div class="preview-step-num">01</div>
+            <div class="preview-step-title">Build your Echo</div>
+          </div>
+          <p class="preview-step-desc">Answer a short set of questions about your personality, values, and what you're looking for. Echo learns how you think, talk, and feel.</p>
+          <span class="preview-step-fact">⏱ About 5 minutes, once</span>
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="mock-card">
+              <div class="mock-echo-header">
+                <div class="mock-echo-avatar">S</div>
+                <div>
+                  <div class="mock-echo-name">Sofia, 26</div>
+                  <div class="mock-echo-sub">Your Echo is ready</div>
+                </div>
+                <div class="mock-echo-badge">✓</div>
+              </div>
+              <div class="mock-echo-body">
+                <div class="mock-echo-section-label">Personality</div>
+                <div class="mock-echo-tags">
+                  <span class="mock-tag mock-tag--mbti">INFJ</span>
+                  <span class="mock-tag">Secure attachment</span>
+                </div>
+                <div class="mock-echo-section-label">Vibe</div>
+                <div class="mock-echo-tags">
+                  <span class="mock-tag">Thoughtful</span>
+                  <span class="mock-tag">Dry humour</span>
+                  <span class="mock-tag">Curious</span>
+                </div>
+                <div class="mock-echo-section-label">Looking for</div>
+                <div class="mock-echo-intent">
+                  <div class="mock-intent-bar">
+                    <div class="mock-intent-fill" style="width: 65%"></div>
+                  </div>
+                  <div class="mock-intent-labels">
+                    <span>Casual</span><span>Long-term</span>
+                  </div>
+                </div>
+                <div class="mock-echo-section-label">About me</div>
+                <p class="mock-echo-bio">"I moved cities for a job I'd never done before. The worst case was just a good story."</p>
+              </div>
+              <div class="mock-echo-footer">
+                <div class="mock-action-btn mock-action-btn--primary">Start matching →</div>
+              </div>
+            </div>
+            <div class="phone-home-bar"></div>
+          </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="step-col reveal">
+          <div class="preview-step-label">
+            <div class="preview-step-num">02</div>
+            <div class="preview-step-title">Your Echo dates for you</div>
+          </div>
+          <p class="preview-step-desc">Your Echo and theirs have a full simulated date — real conversation, real tension, real chemistry signals. No input from you required.</p>
+          <span class="preview-step-fact">✦ Runs in the background, no swiping</span>
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="mock-card">
+              <div class="mock-card-header">
+                <div class="mock-sim-avatars">
+                  <div class="mock-avatar mock-avatar--a">Y</div>
+                  <div class="mock-sim-pulse">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="mock-avatar mock-avatar--b">J</div>
+                </div>
+                <div class="mock-sim-status">
+                  <div class="mock-status-dot"></div>
+                  Your Echo is on a date
+                </div>
+              </div>
+              <div class="mock-mini-chat">
+                <div class="mock-mini-bubble mock-mini-bubble--left">What do you actually do on Sunday mornings?</div>
+                <div class="mock-mini-bubble mock-mini-bubble--right">Farmers market. Then talk myself out of buying plants I'll kill.</div>
+                <div class="mock-mini-bubble mock-mini-bubble--left">You buy them anyway.</div>
+                <div class="mock-mini-bubble mock-mini-bubble--right">Every single time. 🌱</div>
+              </div>
+              <div class="mock-card-footer">
+                <span class="mock-footer-label">Chemistry building</span>
+                <div class="affection-track">
+                  <div class="affection-fill mock-fill-animated" style="width: 58%"></div>
+                </div>
+                <span class="affection-value">58%</span>
+              </div>
+            </div>
+            <div class="phone-home-bar"></div>
+          </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="step-col reveal">
+          <div class="preview-step-label">
+            <div class="preview-step-num">03</div>
+            <div class="preview-step-title">Review, then meet</div>
+          </div>
+          <p class="preview-step-desc">Read the full transcript and chemistry score. Jump into an interactive date yourself — or go straight to meeting in person.</p>
+          <span class="preview-step-fact">💬 Only the matches worth your time</span>
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="mock-card">
+              <div class="mock-report-header">
+                <div class="mock-report-score-wrap">
+                  <div class="mock-report-score">74</div>
+                  <div class="mock-report-score-label">Chemistry Score</div>
+                </div>
+                <div class="mock-report-verdict">Strong intellectual match · Shared sense of humour</div>
+              </div>
+              <div class="mock-report-curve">
+                <div class="mock-curve-legend">
+                  <span class="mock-legend-dot mock-legend-dot--you"></span><span>Your Echo</span>
+                  <span class="mock-legend-dot mock-legend-dot--them"></span><span>Jordan's Echo</span>
+                </div>
+                <svg viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="gradYou" x1="0" y1="0" x2="200" y2="0">
+                      <stop offset="0%" stop-color="#8E4B6E" stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color="#8E4B6E" stop-opacity="1"/>
+                    </linearGradient>
+                    <linearGradient id="gradThem" x1="0" y1="0" x2="200" y2="0">
+                      <stop offset="0%" stop-color="#7b8a65" stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color="#9aac80" stop-opacity="1"/>
+                    </linearGradient>
+                  </defs>
+                  <line x1="0" y1="56" x2="200" y2="56" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                  <line x1="0" y1="38" x2="200" y2="38" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                  <line x1="0" y1="20" x2="200" y2="20" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                  <path d="M0 58 C15 55, 25 45, 45 38 S70 28, 90 25 S120 20, 145 18 S175 17, 200 16"
+                    stroke="url(#gradThem)" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="200" cy="16" r="3" fill="#9aac80"/>
+                  <path d="M0 62 C20 60, 35 55, 55 48 S85 35, 110 26 S145 12, 170 8 S190 5, 200 4"
+                    stroke="url(#gradYou)" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="200" cy="4" r="3.5" fill="#8E4B6E"/>
+                </svg>
+                <div class="mock-curve-labels">
+                  <span>Start of date</span><span>End</span>
+                </div>
+              </div>
+              <div class="mock-report-actions">
+                <div class="mock-action-btn mock-action-btn--primary">Try an interactive date →</div>
+                <div class="mock-action-btn mock-action-btn--ghost">Meet in person</div>
+              </div>
+            </div>
+            <div class="phone-home-bar"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLOSING CTA ──────────────────────────────────────────────────────── -->
+  <section class="reserve-section">
+    <div class="container container--narrow">
+      <div class="reserve-inner">
+        <div class="reserve-tag">Early Access · Closed Beta</div>
+        <h2 class="reserve-title">Ready to let your<br />Echo <em>do the dating?</em></h2>
+        <p class="reserve-sub">We're in closed beta. Reserve your spot and we'll reach out when one opens.</p>
+        <a href="/reserve/" class="btn btn-gold">Reserve My Spot</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-v2">
+    <div class="container footer-v2-inner">
+      <span class="logo logo--sm"><img src="/logo.png" alt="" class="logo-img logo-img--sm" />EchoSim</span>
+      <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+      <div class="footer-links-v2">
+        <a href="mailto:zichao@echosim.ai">Contact Us</a>
+        <a href="/privacy.en.html">Privacy Policy</a>
+        <a href="/terms.en.html">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/site.js" defer></script>
+</body>
+</html>

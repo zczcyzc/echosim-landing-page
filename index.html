@@ -8,12 +8,12 @@
   <meta name="description"
     content="Echo creates your AI dating twin. It handles the awkward early chats. You show up when chemistry is proven." />
 
-  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="icon" type="image/png" href="/logo.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="EchoSim — Let Your AI Go on the First Date" />
   <meta property="og:description" content="Echo builds a digital twin of you. It simulates dates on your behalf. You only step in when the chemistry is real." />
-  <meta property="og:url" content="https://echosim.app" />
+  <meta property="og:url" content="https://echosim.ai" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="EchoSim — Let Your AI Go on the First Date" />
@@ -24,261 +24,15 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* ── Page-level scroll snapping ─────────────────────────────────────── */
-    html { scroll-snap-type: y proximity; }
-    .snap-page { scroll-snap-align: start; }
-
-    /* ── Our Mission section ─────────────────────────────────────────────── */
-    .mission-section {
-      padding: 7rem 0;
-      background: var(--bg);
+  <link rel="stylesheet" href="/style.css" />
+  <script>
+    // Prevent Flash of Unstyled Content (FOUC)
+    const savedTheme = localStorage.getItem('echosim-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
     }
-    .mission-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-    }
-    .soul-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-xl);
-      padding: 2rem 1.75rem;
-      box-shadow: var(--shadow-card);
-      border: 1px solid var(--outline);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .soul-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(142, 75, 110, 0.13);
-    }
-    .soul-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--primary-light));
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-    .soul-card:hover::before { opacity: 1; }
-    .soul-number {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-bottom: 0.9rem;
-    }
-    .soul-icon {
-      font-size: 2rem;
-      margin-bottom: 0.85rem;
-      display: block;
-    }
-    .soul-card h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      line-height: 1.3;
-      color: var(--text);
-      margin-bottom: 0.6rem;
-    }
-    .soul-card h3 em {
-      font-style: italic;
-      color: var(--primary);
-    }
-    .soul-hook {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--primary);
-      font-style: italic;
-      margin-bottom: 0.75rem;
-      line-height: 1.45;
-    }
-    .soul-card p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* ── App Preview section ─────────────────────────────────────────────── */
-    .preview-section {
-      padding: 7rem 0;
-      background: var(--bg-alt);
-    }
-    .preview-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .preview-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-      align-items: start;
-    }
-    .preview-step-label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-    }
-    .preview-step-num {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .preview-step-title {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .preview-step-desc {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── Reserve section ─────────────────────────────────────────────────── */
-    .reserve-section {
-      padding: 7rem 0;
-      background: linear-gradient(160deg, #2a1730 0%, #1a1020 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .reserve-section::before {
-      content: '';
-      position: absolute;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(142,75,110,0.18) 0%, transparent 70%);
-      top: -200px; left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-    .reserve-inner {
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-    .reserve-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.07);
-      padding: 0.3rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
-    .reserve-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-    .reserve-title em {
-      font-style: italic;
-      color: rgba(255,255,255,0.65);
-    }
-    .reserve-sub {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.5);
-      max-width: 480px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.75;
-    }
-    .reserve-form {
-      display: flex;
-      gap: 0.75rem;
-      max-width: 440px;
-      margin: 0 auto 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .reserve-input {
-      flex: 1;
-      min-width: 220px;
-      padding: 0.8rem 1.25rem;
-      border-radius: 100px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.07);
-      color: #fff;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .reserve-input::placeholder { color: rgba(255,255,255,0.35); }
-    .reserve-input:focus { border-color: rgba(142,75,110,0.6); }
-    .reserve-note {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.35);
-      min-height: 1.4em;
-    }
-
-    /* ── Footer ──────────────────────────────────────────────────────────── */
-    .footer-v2 {
-      background: #130c18;
-      padding: 2.5rem 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-v2-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-v2 .logo { color: rgba(255,255,255,0.7); }
-    .footer-v2 .logo-img { opacity: 0.8; }
-    .footer-copy-v2 {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.3);
-    }
-    .footer-links-v2 {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .footer-links-v2 a {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links-v2 a:hover { color: rgba(255,255,255,0.8); }
-
-    /* ── Responsive ──────────────────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      .mission-grid { grid-template-columns: repeat(2, 1fr); }
-      .preview-steps { grid-template-columns: 1fr; gap: 3rem; }
-    }
-    @media (max-width: 600px) {
-      .mission-grid { grid-template-columns: 1fr; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .reserve-form { flex-direction: column; align-items: stretch; }
-      .reserve-input { min-width: unset; border-radius: var(--radius); }
-      .footer-v2-inner { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  </script>
 </head>
 
 <body>
@@ -286,17 +40,18 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner container">
-      <a href="#" class="logo"><img src="logo.png" alt="" class="logo-img" />EchoSim</a>
-      <div style="display:flex;gap:0.75rem;align-items:center;">
-        <a href="#reserve" class="btn btn-primary btn-sm">Reserve My Spot</a>
+      <a href="/" class="logo"><img src="/logo.png" alt="" class="logo-img" />EchoSim</a>
+      <div class="nav-links">
+        <a href="/mission/" class="nav-link">Mission</a>
+        <a href="/how-it-works/" class="nav-link">How It Works</a>
+        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+        <a href="/reserve/" class="btn btn-primary btn-sm">Reserve My Spot</a>
       </div>
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <!-- HERO                                                                   -->
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <section class="hero snap-page">
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="hero">
     <div class="container hero-inner">
       <div class="hero-left">
         <div class="hero-tag">AI Dating · Now in Beta</div>
@@ -309,8 +64,8 @@
           It simulates dates on your behalf. You only step in when the chemistry is real.
         </p>
         <div class="hero-ctas">
-          <a href="#reserve" class="btn btn-primary">Reserve My Spot</a>
-          <a href="#mission" class="btn btn-ghost">Our Mission</a>
+          <a href="/reserve/" class="btn btn-primary">Reserve My Spot</a>
+          <a href="/mission/" class="btn btn-ghost">Our Mission</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -353,271 +108,80 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <!-- PAGE 1 · OUR MISSION — 6 Souls                                        -->
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <section class="mission-section snap-page" id="mission">
+  <!-- ── MISSION TEASER ───────────────────────────────────────────────────── -->
+  <section class="section section--alt">
     <div class="container">
-      <div class="mission-header">
-        <p class="section-eyebrow">Our Mission</p>
-        <h2 class="section-title" style="margin-bottom:1rem;">
-          Six reasons we built<br /><em>EchoSim.</em>
-        </h2>
-        <p style="color:var(--text-muted);font-size:1rem;max-width:560px;margin:0 auto;line-height:1.75;">
-          Modern dating apps haven't changed since 2012 — swipe, match, ghost. We believe technology can do so much more for the way people connect.
-        </p>
+      <div class="teaser-head">
+        <div>
+          <p class="section-eyebrow">Our Mission</p>
+          <h2 class="section-title">Six reasons we built<br /><em>EchoSim.</em></h2>
+        </div>
+        <a href="/mission/" class="link-arrow">Read our mission →</a>
       </div>
-
       <div class="mission-grid">
-
-        <!-- Soul 1 -->
         <div class="soul-card reveal">
-          <div class="soul-number">Soul 01</div>
           <span class="soul-icon">🧬</span>
-          <h3>Soul <em>Resonance</em> Test</h3>
-          <p class="soul-hook">"Save your heart for the right one. Let your Echo take the heartbreak."</p>
-          <p>
-            Your Echo dates their Echo first — running through arguments, red flags, and deep conversations in simulation. Only someone who truly survives the test ever makes it to your real life.
-          </p>
+          <h3>Soul <em>Resonance</em></h3>
+          <p>Your Echo dates theirs first — through the arguments and red flags. Only the ones who survive the test reach your real life.</p>
         </div>
-
-        <!-- Soul 2 -->
         <div class="soul-card reveal">
-          <div class="soul-number">Soul 02</div>
           <span class="soul-icon">💥</span>
-          <h3>Refuse <em>Emotional Drain</em></h3>
-          <p class="soul-hook">"Sparks shouldn't die at 'Hey.' We smashed the boring chat box."</p>
-          <p>
-            No more customer-service small talk. The second you match, you're thrown into a shared experience — surviving a zombie apocalypse, a falling elevator, or a digital bank heist. Real chemistry, no scripts.
-          </p>
+          <h3>No <em>Emotional Drain</em></h3>
+          <p>No customer-service small talk. The moment you match, you're dropped straight into a shared adventure.</p>
         </div>
-
-        <!-- Soul 3 -->
         <div class="soul-card reveal">
-          <div class="soul-number">Soul 03</div>
-          <span class="soul-icon">⚡</span>
-          <h3>Break the <em>Time Paradox</em></h3>
-          <p class="soul-hook">"People who actually have a life shouldn't be trapped swiping all day."</p>
-          <p>
-            High-achieving people shouldn't be punished for being busy. Trigger a simulation whenever you have a moment — your Echoes do the hard work while you focus on real life. Review the outcome over coffee.
-          </p>
-        </div>
-
-        <!-- Soul 4 -->
-        <div class="soul-card reveal">
-          <div class="soul-number">Soul 04</div>
-          <span class="soul-icon">✨</span>
-          <h3><em>Wild</em> Echo</h3>
-          <p class="soul-hook">"The total devotion that reality rarely offers, EchoSim's Wild Echo gives to you freely."</p>
-          <p>
-            For those who crave a romance that reality can't deliver. Wild Echoes are rare AI personas — deeply devoted, endlessly present — for people who deserve more than the ordinary.
-          </p>
-        </div>
-
-        <!-- Soul 5 -->
-        <div class="soul-card reveal">
-          <div class="soul-number">Soul 05</div>
           <span class="soul-icon">🎭</span>
           <h3>Tear the <em>Persona Filter</em></h3>
-          <p class="soul-hook">"Anyone can fake a perfect profile. But no one can fake a genuine heart."</p>
-          <p>
-            Photos are edited. Bios are polished. Even texts can be AI-written. EchoSim uses unpredictable crisis moments to test true character — no time to fake a response, no way to hide who they really are.
-          </p>
+          <p>Anyone can fake a perfect profile. Unscripted crisis moments reveal who someone really is.</p>
         </div>
-
-        <!-- Soul 6 -->
-        <div class="soul-card reveal">
-          <div class="soul-number">Soul 06</div>
-          <span class="soul-icon">🚀</span>
-          <h3>Couples' <em>Freshness</em> Simulator</h3>
-          <p class="soul-hook">"Love isn't the end of romance — it's the beginning of shared adventure."</p>
-          <p>
-            Dating apps aren't just for singles. EchoSim lets couples escape daily routine with cyber adventures — from a candlelit dinner on Mars to a last-day-on-Earth escape — reigniting the spark that brought you together.
-          </p>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <!-- PAGE 2 · APP PREVIEW                                                   -->
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <section class="preview-section snap-page" id="preview">
+  <!-- ── HOW IT WORKS TEASER ──────────────────────────────────────────────── -->
+  <section class="section">
     <div class="container">
-      <div class="preview-header">
-        <p class="section-eyebrow">App Preview</p>
-        <h2 class="section-title" style="margin-bottom:1rem;">
-          Three steps to<br /><em>meaningful connection.</em>
-        </h2>
-        <p style="color:var(--text-muted);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.75;">
-          From building your Echo to reviewing the chemistry report — the whole process takes minutes.
-        </p>
+      <div class="teaser-head">
+        <div>
+          <p class="section-eyebrow">How It Works</p>
+          <h2 class="section-title">Three steps to<br /><em>meaningful connection.</em></h2>
+        </div>
+        <a href="/how-it-works/" class="link-arrow">See how it works →</a>
       </div>
-
-      <div class="preview-steps">
-
-        <!-- Step 01 -->
-        <div class="step-col">
-          <div class="preview-step-label">
-            <div class="preview-step-num">01</div>
-            <div class="preview-step-title">Build your Echo</div>
-          </div>
-          <p class="preview-step-desc">Answer a short set of questions about your personality, values, and what you're looking for. Echo learns how you think, talk, and feel.</p>
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="mock-card">
-              <div class="mock-echo-header">
-                <div class="mock-echo-avatar">S</div>
-                <div>
-                  <div class="mock-echo-name">Sofia, 26</div>
-                  <div class="mock-echo-sub">Your Echo is ready</div>
-                </div>
-                <div class="mock-echo-badge">✓</div>
-              </div>
-              <div class="mock-echo-body">
-                <div class="mock-echo-section-label">Personality</div>
-                <div class="mock-echo-tags">
-                  <span class="mock-tag mock-tag--mbti">INFJ</span>
-                  <span class="mock-tag">Secure attachment</span>
-                </div>
-                <div class="mock-echo-section-label">Vibe</div>
-                <div class="mock-echo-tags">
-                  <span class="mock-tag">Thoughtful</span>
-                  <span class="mock-tag">Dry humour</span>
-                  <span class="mock-tag">Curious</span>
-                </div>
-                <div class="mock-echo-section-label">Looking for</div>
-                <div class="mock-echo-intent">
-                  <div class="mock-intent-bar">
-                    <div class="mock-intent-fill" style="width: 65%"></div>
-                  </div>
-                  <div class="mock-intent-labels">
-                    <span>Casual</span><span>Long-term</span>
-                  </div>
-                </div>
-                <div class="mock-echo-section-label">About me</div>
-                <p class="mock-echo-bio">"I moved cities for a job I'd never done before. The worst case was just a good story."</p>
-              </div>
-              <div class="mock-echo-footer">
-                <div class="mock-action-btn mock-action-btn--primary">Start matching →</div>
-              </div>
-            </div>
-            <div class="phone-home-bar"></div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Build your Echo</h3>
+            <p>A few questions teach your Echo how you think, talk, and feel.</p>
           </div>
         </div>
-
-        <!-- Step 02 -->
-        <div class="step-col">
-          <div class="preview-step-label">
-            <div class="preview-step-num">02</div>
-            <div class="preview-step-title">Your Echo dates for you</div>
-          </div>
-          <p class="preview-step-desc">Your Echo and theirs have a full simulated date — real conversation, real tension, real chemistry signals. No input from you required.</p>
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="mock-card">
-              <div class="mock-card-header">
-                <div class="mock-sim-avatars">
-                  <div class="mock-avatar mock-avatar--a">Y</div>
-                  <div class="mock-sim-pulse">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div class="mock-avatar mock-avatar--b">J</div>
-                </div>
-                <div class="mock-sim-status">
-                  <div class="mock-status-dot"></div>
-                  Your Echo is on a date
-                </div>
-              </div>
-              <div class="mock-mini-chat">
-                <div class="mock-mini-bubble mock-mini-bubble--left">What do you actually do on Sunday mornings?</div>
-                <div class="mock-mini-bubble mock-mini-bubble--right">Farmers market. Then talk myself out of buying plants I'll kill.</div>
-                <div class="mock-mini-bubble mock-mini-bubble--left">You buy them anyway.</div>
-                <div class="mock-mini-bubble mock-mini-bubble--right">Every single time. 🌱</div>
-              </div>
-              <div class="mock-card-footer">
-                <span class="mock-footer-label">Chemistry building</span>
-                <div class="affection-track">
-                  <div class="affection-fill mock-fill-animated" style="width: 58%"></div>
-                </div>
-                <span class="affection-value">58%</span>
-              </div>
-            </div>
-            <div class="phone-home-bar"></div>
+        <div class="step-connector"></div>
+        <div class="step reveal">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Your Echo dates for you</h3>
+            <p>It runs a full simulated date in the background — real conversation, real chemistry, no swiping.</p>
           </div>
         </div>
-
-        <!-- Step 03 -->
-        <div class="step-col">
-          <div class="preview-step-label">
-            <div class="preview-step-num">03</div>
-            <div class="preview-step-title">Review, then meet</div>
-          </div>
-          <p class="preview-step-desc">Read the full transcript and chemistry score. Jump into an interactive date yourself — or go straight to meeting in person.</p>
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="mock-card">
-              <div class="mock-report-header">
-                <div class="mock-report-score-wrap">
-                  <div class="mock-report-score">74</div>
-                  <div class="mock-report-score-label">Chemistry Score</div>
-                </div>
-                <div class="mock-report-verdict">Strong intellectual match · Shared sense of humour</div>
-              </div>
-              <div class="mock-report-curve">
-                <div class="mock-curve-legend">
-                  <span class="mock-legend-dot mock-legend-dot--you"></span><span>Your Echo</span>
-                  <span class="mock-legend-dot mock-legend-dot--them"></span><span>Jordan's Echo</span>
-                </div>
-                <svg viewBox="0 0 200 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="gradYou" x1="0" y1="0" x2="200" y2="0">
-                      <stop offset="0%" stop-color="#8E4B6E" stop-opacity="0.4"/>
-                      <stop offset="100%" stop-color="#8E4B6E" stop-opacity="1"/>
-                    </linearGradient>
-                    <linearGradient id="gradThem" x1="0" y1="0" x2="200" y2="0">
-                      <stop offset="0%" stop-color="#7b8a65" stop-opacity="0.4"/>
-                      <stop offset="100%" stop-color="#9aac80" stop-opacity="1"/>
-                    </linearGradient>
-                  </defs>
-                  <line x1="0" y1="56" x2="200" y2="56" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
-                  <line x1="0" y1="38" x2="200" y2="38" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
-                  <line x1="0" y1="20" x2="200" y2="20" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
-                  <path d="M0 58 C15 55, 25 45, 45 38 S70 28, 90 25 S120 20, 145 18 S175 17, 200 16"
-                    stroke="url(#gradThem)" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="200" cy="16" r="3" fill="#9aac80"/>
-                  <path d="M0 62 C20 60, 35 55, 55 48 S85 35, 110 26 S145 12, 170 8 S190 5, 200 4"
-                    stroke="url(#gradYou)" stroke-width="2.5" stroke-linecap="round"/>
-                  <circle cx="200" cy="4" r="3.5" fill="#8E4B6E"/>
-                </svg>
-                <div class="mock-curve-labels">
-                  <span>Start of date</span><span>End</span>
-                </div>
-              </div>
-              <div class="mock-report-actions">
-                <div class="mock-action-btn mock-action-btn--primary">Try an interactive date →</div>
-                <div class="mock-action-btn mock-action-btn--ghost">Meet in person</div>
-              </div>
-            </div>
-            <div class="phone-home-bar"></div>
+        <div class="step-connector"></div>
+        <div class="step reveal">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Review, then meet</h3>
+            <p>Read the chemistry report, then take it interactive yourself — or go straight to meeting in person.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <!-- RESERVE · Waitlist                                                     -->
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <section class="reserve-section snap-page" id="reserve">
+  <!-- ── RESERVE · Waitlist ───────────────────────────────────────────────── -->
+  <section class="reserve-section">
     <div class="container container--narrow">
       <div class="reserve-inner">
         <div class="reserve-tag">Early Access · Closed Beta</div>
-        <h2 class="reserve-title">
-          Be among the first<br /><em>to meet your Echo.</em>
-        </h2>
+        <h2 class="reserve-title">Be among the first<br /><em>to meet your Echo.</em></h2>
         <p class="reserve-sub">
           We're in closed beta. Drop your email and we'll reach out when a spot opens — no spam, ever.
         </p>
@@ -650,44 +214,19 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
-  <!-- FOOTER                                                                 -->
-  <!-- ══════════════════════════════════════════════════════════════════════ -->
+  <!-- FOOTER -->
   <footer class="footer-v2">
     <div class="container footer-v2-inner">
-      <span class="logo logo--sm"><img src="logo.png" alt="" class="logo-img logo-img--sm" />EchoSim</span>
+      <span class="logo logo--sm"><img src="/logo.png" alt="" class="logo-img logo-img--sm" />EchoSim</span>
       <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
       <div class="footer-links-v2">
         <a href="mailto:zichao@echosim.ai">Contact Us</a>
-        <a href="privacy.en.html">Privacy Policy</a>
-        <a href="terms.en.html">Terms of Service</a>
+        <a href="/privacy.en.html">Privacy Policy</a>
+        <a href="/terms.en.html">Terms of Service</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    /* Smooth anchor scrolling */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    /* Scroll-reveal animation */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.soul-card, .step-col, .step, .reveal').forEach(el => {
-      el.classList.add('reveal');
-      observer.observe(el);
-    });
-  </script>
+  <script src="/site.js" defer></script>
 </body>
 </html>
