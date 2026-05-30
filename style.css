@@ -1459,27 +1459,43 @@ body::before {
 /* ─── How It Works · 3-step grid (standalone page) ───────────────────────── */
 .preview-section { padding: 1rem 0 6rem; background: var(--bg); }
 .preview-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  padding: 2rem 0;
 }
-.preview-step-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.step-col {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.step-col:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+.step-text {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 480px;
+}
+.preview-step-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
 .preview-step-num {
-  width: 32px; height: 32px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  color: #fff; font-size: 0.75rem; font-weight: 700;
+  color: #fff; font-size: 1rem; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.preview-step-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--text); }
-.preview-step-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+.preview-step-title { font-family: var(--serif); font-size: 1.75rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+.preview-step-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.75rem; }
 .preview-step-fact {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.76rem; font-weight: 600; color: var(--primary);
+  font-size: 0.85rem; font-weight: 600; color: var(--primary);
   background: rgba(142, 75, 110, 0.07);
-  padding: 0.45rem 0.85rem;
+  padding: 0.5rem 1rem;
   border-radius: 100px;
   margin-bottom: 1.5rem;
 }
@@ -1624,8 +1640,11 @@ html[data-theme="dark"] .reserve-note { color: rgba(255,255,255,0.35); }
 .footer-links-v2 a:hover { color: rgba(255,255,255,0.8); }
 
 /* ─── Multi-page responsive ──────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .preview-steps { grid-template-columns: 1fr; gap: 3rem; justify-items: center; }
+@media (max-width: 768px) {
+  .preview-steps { gap: 5rem; }
+  .step-col, .step-col:nth-child(odd) { flex-direction: column; text-align: center; gap: 3rem; }
+  .step-text { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .preview-step-label { justify-content: center; }
   .mission-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
