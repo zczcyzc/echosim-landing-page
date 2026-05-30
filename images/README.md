@@ -10,7 +10,7 @@ HTML/CSS changes needed.
 | Filename            | Where it appears                  | Suggested size (px) | Mood / direction                                              |
 |---------------------|-----------------------------------|---------------------|---------------------------------------------------------------|
 | `hero-couple.jpg`   | Hero, full background (landscape) | 1920 × 1200 (16:10) | Warm, candid two people. Leave the left ~half calmer/darker so the headline panel stays readable. |
-| `editorial-life.jpg`| "Rather be living" section        | 1000 × 800 (5:4)    | Someone enjoying real life — coffee, travel, laughing.        |
+| `editorial-life.jpg`| "Rather be living" section        | 1792 × 1008 (16:9)  | Someone enjoying real life — coffee, travel, laughing.        |
 | `editorial-meet.jpg`| "Meet when it's real" section     | 1000 × 800 (5:4)    | A genuine first meeting — eye contact, a real moment.         |
 
 Notes:

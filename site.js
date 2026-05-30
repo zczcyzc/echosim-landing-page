@@ -88,4 +88,55 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('click', close);
     });
   }
+
+  /* ─── Hero Panel Delayed Fade-In ────────────────────────────────────────── */
+  // 当背景图片加载完成后，延迟 1.5 秒渐现显示文字 Card 面板以创造高级平滑动效。
+  // 若用户主动向下滑动，会提前触发渐现动画，避免首屏内容展示滞后。
+  const heroImg = document.querySelector('.hero-bg .photo__img');
+  const heroPanel = document.querySelector('.hero-panel');
+  if (heroPanel) {
+    let timer = null;
+    let loaded = false;
+
+    const triggerFadeIn = (immediate = false) => {
+      if (loaded) return;
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+
+      const show = () => {
+        heroPanel.classList.add('loaded');
+        loaded = true;
+        window.removeEventListener('scroll', handleScroll);
+      };
+
+      if (immediate) {
+        show();
+      } else {
+        timer = setTimeout(show, 1500);
+      }
+    };
+
+    const handleScroll = () => {
+      if (window.scrollY > 5) {
+        triggerFadeIn(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    if (heroImg) {
+      if (heroImg.complete && heroImg.naturalWidth > 0) {
+        triggerFadeIn();
+      } else {
+        heroImg.addEventListener('load', () => triggerFadeIn());
+        heroImg.addEventListener('error', () => triggerFadeIn());
+        // 兜底机制：即使网络极慢或图片加载卡住，4 秒后也会强制渐现文字 Card
+        setTimeout(() => triggerFadeIn(), 4000);
+      }
+    } else {
+      triggerFadeIn();
+    }
+  }
 });

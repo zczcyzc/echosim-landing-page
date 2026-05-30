@@ -1818,14 +1818,26 @@ html[data-theme="dark"] .nav-mobile-menu {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* placeholder gradient shown until a real photo is dropped in */
-  background: linear-gradient(135deg, rgba(142, 75, 110, 0.18), rgba(196, 168, 74, 0.14));
+  /* 黑色背景，用于在超宽视图时左右留空 */
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.hero-bg .photo__img { width: 100%; height: 100%; object-fit: cover; }
+.hero-bg .photo__img {
+  /* 填充容器高度，宽度自适应以保持比例，防止上下裁剪，并在超宽时居中 */
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+}
 .hero-bg__hint {
   position: absolute;
   inset: 0;
-  z-index: -1; /* sits behind the <img>; only visible while the photo is missing */
+  z-index: -1; /* 位于 <img> 后方；仅在照片缺失时可见 */
+  /* 当照片缺失时，显示占位渐变背景 */
+  background: linear-gradient(135deg, rgba(142, 75, 110, 0.18), rgba(196, 168, 74, 0.14));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1845,15 +1857,25 @@ html[data-theme="dark"] .nav-mobile-menu {
   max-width: 560px;
   padding: 2.75rem 3rem;
   border-radius: var(--radius-xl);
-  background: rgba(255, 255, 255, 0.5);
+  /* 20% 透明度 (80% 不透明度) 以提高文字在图片背景上的可读性 */
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow: 0 20px 60px rgba(26, 28, 27, 0.12);
+  /* 初始不可见并在下方 15px，加载完 1.5 秒后平滑渐现并上滑 */
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.hero-panel .hero-sub { margin-bottom: 2rem; }
+.hero-panel.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-panel .hero-sub { margin-bottom: 0; }
 [data-theme="dark"] .hero-panel {
-  background: rgba(9, 9, 11, 0.5);
+  /* 暗色模式下同样调整为 20% 透明度 (80% 不透明度) */
+  background: rgba(9, 9, 11, 0.8);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
@@ -1889,6 +1911,8 @@ html[data-theme="dark"] .nav-mobile-menu {
   margin-bottom: 1.5rem;
 }
 .editorial .photo { aspect-ratio: 5 / 4; }
+/* 针对 "生活而非刷图" (editorial-life.jpg) 图片设置 16:9 的宽长比，匹配实际 1792x1008 分辨率 */
+.editorial .photo--editorial-life { aspect-ratio: 16 / 9; }
 
 @media (max-width: 900px) {
   .editorial { grid-template-columns: 1fr; gap: 2.5rem; }
