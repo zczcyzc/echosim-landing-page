@@ -1914,12 +1914,65 @@ html[data-theme="dark"] .nav-mobile-menu {
 /* 针对 "生活而非刷图" (editorial-life.jpg) 图片设置 16:9 的宽长比，匹配实际 1792x1008 分辨率 */
 .editorial .photo--editorial-life { aspect-ratio: 16 / 9; }
 
+@media (min-width: 901px) {
+  /* 桌面端排版优化：第一个 Row 调整列宽比例（左文字 0.68fr，右图片 1.32fr），使 16:9 的图片在右侧渲染较大且高度与左侧文字 Card 完美一致，不发生裁剪 */
+  .editorial--split-mobile:not(.editorial--flip) {
+    grid-template-columns: 0.68fr 1.32fr;
+  }
+  .editorial--split-mobile:not(.editorial--flip) .editorial__text {
+    order: -1;
+  }
+  .editorial--split-mobile:not(.editorial--flip) .editorial__media {
+    order: 1;
+  }
+}
+
 @media (max-width: 900px) {
   .editorial { grid-template-columns: 1fr; gap: 2.5rem; }
   .editorial--flip .editorial__media { order: 0; }
   .editorial__media { order: -1; }
+
+  /* 移动端排版重置：使第一个 Row 的图片放到标题之后，并且无边框、全屏宽，贴合屏幕边缘 */
+  .editorial--split-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .editorial--split-mobile .editorial__text {
+    display: contents;
+  }
+  .editorial--split-mobile .editorial__eyebrow {
+    order: 1;
+  }
+  .editorial--split-mobile .editorial__title {
+    order: 2;
+  }
+  .editorial--split-mobile .editorial__media {
+    order: 3;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    width: calc(100% + 4rem);
+    max-width: none;
+    margin-bottom: 2rem;
+  }
+  .editorial--split-mobile .photo {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .editorial--split-mobile .editorial__body {
+    order: 4;
+  }
+  .editorial--split-mobile .link-arrow {
+    order: 5;
+  }
 }
 @media (max-width: 600px) {
   .hero--photo { min-height: 540px; padding: 5rem 0; }
   .hero-panel { padding: 2rem 1.5rem; }
+  /* 针对更窄的屏幕，调整负边距以实现完美的无缝全屏宽 */
+  .editorial--split-mobile .editorial__media {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    width: calc(100% + 2.5rem);
+  }
 }
