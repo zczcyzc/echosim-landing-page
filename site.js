@@ -63,4 +63,29 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
     btn.addEventListener('click', toggleTheme);
   });
+
+  /* ─── Mobile hamburger ─────────────────────────────────────────────────── */
+  const nav = document.querySelector('.nav');
+  const hamburger = document.querySelector('.nav-hamburger');
+  if (nav && hamburger) {
+    const close = () => {
+      nav.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const opening = !nav.classList.contains('is-open');
+      opening ? nav.classList.add('is-open') : close();
+      hamburger.setAttribute('aria-expanded', String(opening));
+    });
+    document.addEventListener('click', (e) => {
+      if (nav.classList.contains('is-open') && !nav.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+    document.querySelectorAll('.nav-mobile-link, .nav-mobile-cta').forEach(el => {
+      el.addEventListener('click', close);
+    });
+  }
 });
