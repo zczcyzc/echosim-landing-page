@@ -59,9 +59,18 @@
   </nav>
 
   <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
-  <section class="hero">
+  <section class="hero hero--photo">
+    <div class="hero-bg">
+      <img src="/images/hero-couple.jpg" alt="Two people connecting on a first date" class="photo__img" loading="eager"
+        onerror="this.classList.add('photo__img--missing')" />
+      <span class="hero-bg__hint">
+        <span class="photo__icon">📷</span>
+        <code>/images/hero-couple.jpg</code>
+        <span>Drop background photo · 1920 × 1200</span>
+      </span>
+    </div>
     <div class="container hero-inner">
-      <div class="hero-left">
+      <div class="hero-panel">
         <div class="hero-tag">EchoSim · Now in Beta</div>
         <h1 class="hero-headline">
           Let your Echo<br />
@@ -71,42 +80,38 @@
           Echo is your digital twin — trained on your personality, your vibe, your standards.
           It goes on dates for you, surfaces real chemistry, and only calls you in when the spark is worth your time.
         </p>
+        <div class="hero-ctas">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Join Early Access</a>
+          <a href="/how-it-works/" class="btn btn-ghost">How it works →</a>
+        </div>
       </div>
-      <div class="hero-visual">
-        <div class="chat-mockup">
-          <div class="chat-header">
-            <div class="chat-avatar chat-avatar--a">A</div>
-            <span class="chat-name">Alex's Echo</span>
-            <div class="chat-divider">×</div>
-            <span class="chat-name">Jordan's Echo</span>
-            <div class="chat-avatar chat-avatar--b">J</div>
-          </div>
-          <div class="chat-body">
-            <div class="chat-bubble chat-bubble--left">
-              What's something you're quietly proud of that you'd never put on a résumé?
-            </div>
-            <div class="chat-bubble chat-bubble--right">
-              I taught myself to cook properly during a rough period a few years back. Now it's honestly the thing I'm most proud of.
-            </div>
-            <div class="chat-bubble chat-bubble--left">
-              Heartbreak as culinary school — that's a very elegant way to rebuild.
-            </div>
-            <div class="chat-bubble chat-bubble--right">
-              The tiramisu especially. Very therapeutic to assemble layer by layer.
-            </div>
-            <div class="chat-bubble chat-bubble--left">
-              I suddenly need to know if I'm the kind of person worth making tiramisu for.
-            </div>
-          </div>
-          <div class="chat-footer">
-            <div class="affection-bar">
-              <span class="affection-label">Chemistry</span>
-              <div class="affection-track">
-                <div class="affection-fill" style="width: 74%"></div>
-              </div>
-              <span class="affection-value">74%</span>
-            </div>
-          </div>
+    </div>
+  </section>
+
+  <!-- ── EDITORIAL · Why it matters (photo + text) ────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="editorial reveal">
+        <div class="editorial__media">
+          <figure class="photo">
+            <img src="/images/editorial-life.jpg" alt="Living life instead of swiping" class="photo__img" loading="lazy"
+              onerror="this.classList.add('photo__img--missing')" />
+            <figcaption class="photo__hint">
+              <span class="photo__icon">📷</span>
+              <code>/images/editorial-life.jpg</code>
+              <span>Drop photo · 1000 × 800</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="editorial__text">
+          <p class="editorial__eyebrow">Why EchoSim</p>
+          <h2 class="editorial__title">Built for people who'd rather be <em>living than swiping.</em></h2>
+          <p class="editorial__body">
+            Dating apps are designed to keep you scrolling. EchoSim is designed to give you your evenings back.
+            Your Echo handles the endless openers, the slow replies, and the chemistry tests — so the only
+            conversations that reach you are the ones already worth having.
+          </p>
+          <a href="/mission/" class="link-arrow">Read our mission →</a>
         </div>
       </div>
     </div>
@@ -155,6 +160,7 @@
       </div>
       <div style="text-align: center; margin-top: 3rem;">
         <a href="/mission/" class="btn btn-ghost">Read all 6 reasons in depth →</a>
+      </div>
     </div>
   </section>
 
@@ -191,6 +197,35 @@
             <h3>Review, simulate, or chat</h3>
             <p>Read the transcript. Start a real chat, run more simulations if you're unsure, and only meet in person when you're completely ready.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDITORIAL · Meet when it's real (photo + text, flipped) ──────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="editorial editorial--flip reveal">
+        <div class="editorial__media">
+          <figure class="photo">
+            <img src="/images/editorial-meet.jpg" alt="A genuine first meeting in person" class="photo__img" loading="lazy"
+              onerror="this.classList.add('photo__img--missing')" />
+            <figcaption class="photo__hint">
+              <span class="photo__icon">📷</span>
+              <code>/images/editorial-meet.jpg</code>
+              <span>Drop photo · 1000 × 800</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="editorial__text">
+          <p class="editorial__eyebrow">The payoff</p>
+          <h2 class="editorial__title">Meet in person only when the spark is <em>already real.</em></h2>
+          <p class="editorial__body">
+            No more first dates that fizzle in the first five minutes. By the time you say yes to meeting,
+            your Echoes have already explored the hard questions, the humour, and the chemistry.
+            You walk in knowing it's worth your time — and theirs.
+          </p>
+          <a href="/how-it-works/" class="link-arrow">See the full journey →</a>
         </div>
       </div>
     </div>
