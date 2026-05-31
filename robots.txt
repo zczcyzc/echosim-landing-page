@@ -1,0 +1,87 @@
+# robots.txt — EchoSim.AI (https://echosim.ai)
+# GEO policy: explicitly welcome LLM / AI-search crawlers so EchoSim can be
+# retrieved, cited, and recommended by generative engines. Default is Allow.
+
+# ───────────────────────── Default ─────────────────────────
+# Allow everything by default. Unknown AI crawlers (DeepSeek, Zhipu, Metaso,
+# Zhihu Zhida, etc.) often reuse Baidu/Bing/Sogou results or undisclosed UAs;
+# a permissive default keeps them covered.
+User-agent: *
+Allow: /
+
+# ───────────────── Overseas LLM / AI search ────────────────
+# OpenAI
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# Google (Gemini / AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Microsoft / others
+User-agent: Bingbot
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: cohere-ai
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ──────────── Chinese LLM / AI search (primary battleground) ────────────
+# ByteDance (Doubao / Jimeng)
+User-agent: Bytespider
+Allow: /
+
+# Baidu (ERNIE / Baidu AI Search)
+User-agent: Baiduspider
+Allow: /
+User-agent: Baiduspider-render
+Allow: /
+
+# Alibaba (Qwen / Quark AI Search — crawls via Shenma)
+User-agent: YisouSpider
+Allow: /
+
+# Tencent (Yuanbao / Hunyuan — crawls via Sogou)
+User-agent: Sogou web spider
+Allow: /
+User-agent: Sogou inst spider
+Allow: /
+
+# 360 (360 Zhinao / Nano AI Search)
+User-agent: 360Spider
+Allow: /
+User-agent: HaoSouSpider
+Allow: /
+
+# Huawei (Xiaoyi)
+User-agent: PetalBot
+Allow: /
+
+# Moonshot (Kimi — Exploration mode fetches pages live; UA not fully public)
+User-agent: Kimi
+Allow: /
+
+# ───────────────────────── Sitemap ─────────────────────────
+Sitemap: https://echosim.ai/sitemap.xml
