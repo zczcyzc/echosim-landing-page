@@ -370,66 +370,7 @@
             Join early access today and we'll reach out when a spot opens — no
             spam, ever.
           </p>
-          <form id="earlyAccessForm" class="reserve-form-extended">
-            <input
-              type="email"
-              id="earlyAccessEmail"
-              name="entry.329827072"
-              placeholder="Enter your email address"
-              required
-              class="reserve-input"
-            />
-            <div class="reserve-row">
-              <select name="entry.147168178" required class="reserve-input">
-                <option value="" disabled selected>Platform</option>
-                <option value="iOS">iOS</option>
-                <option value="Android">Android</option>
-              </select>
-              <input
-                type="text"
-                name="entry.2053319293"
-                placeholder="City"
-                required
-                class="reserve-input"
-              />
-            </div>
-            <div class="reserve-row">
-              <input
-                type="text"
-                name="entry.1519677256"
-                placeholder="State/Province"
-                required
-                class="reserve-input"
-              />
-              <input
-                type="text"
-                name="entry.1997565566"
-                placeholder="Country"
-                required
-                class="reserve-input"
-              />
-            </div>
-            <button
-              type="submit"
-              class="btn btn-gold reserve-submit"
-              style="margin-top: 0.5rem"
-            >
-              Join Early Access
-            </button>
-          </form>
-          <div
-            id="earlyAccessSuccess"
-            style="
-              display: none;
-              color: var(--primary);
-              margin-top: 1rem;
-              text-align: center;
-              font-size: 0.95rem;
-              font-weight: 500;
-            "
-          >
-            Thanks! We'll be in touch soon.
-          </div>
+          <early-access-form></early-access-form>
         </div>
       </div>
     </section>
@@ -453,6 +394,8 @@
       </div>
     </footer>
 
+    <script src="/early-access-api.js" defer></script>
+    <script src="/early-access.js" defer></script>
     <script src="/site.js" defer></script>
   </body>
 </html>

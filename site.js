@@ -144,36 +144,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ─── Early Access Form Submit ─────────────────────────────────────────── */
-  const earlyAccessForm = document.getElementById("earlyAccessForm");
-  const earlyAccessSuccess = document.getElementById("earlyAccessSuccess");
-  if (earlyAccessForm) {
-    earlyAccessForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const formData = new FormData(earlyAccessForm);
-      const url =
-        "https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/formResponse";
 
-      const submitBtn = earlyAccessForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = "Submitting...";
-      submitBtn.disabled = true;
-
-      fetch(url, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData,
-      })
-        .then(() => {
-          earlyAccessForm.style.display = "none";
-          if (earlyAccessSuccess) earlyAccessSuccess.style.display = "block";
-        })
-        .catch((err) => {
-          console.error("Submission error:", err);
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          alert("Failed to submit. Please try again later.");
-        });
-    });
-  }
 });
