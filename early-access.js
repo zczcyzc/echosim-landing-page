@@ -71,11 +71,81 @@ class EarlyAccessForm extends HTMLElement {
     }
   }
 
+  /**
+   * @description 校验邮箱输入，包含正则校验、拼写错误检查、临时邮箱过滤。
+   * @param {HTMLInputElement} emailInput 邮箱输入框元素
+   * @returns {boolean} 是否校验通过
+   */
+  checkEmailValidity(emailInput) {
+    if (!emailInput) return true;
+    emailInput.setCustomValidity('');
+    const emailVal = emailInput.value.trim();
+    if (!emailVal) return true;
+
+    // 1. 严格正则表达式校验 (Strict regex validation)
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(emailVal)) {
+      emailInput.setCustomValidity('Please enter a valid email address with a valid domain extension (e.g. .com).');
+      return false;
+    }
+
+    const domain = emailVal.split('@')[1]?.toLowerCase();
+    
+    // 2. 常见邮箱拼写纠错 (Common email domain typo correction)
+    const typos = {
+      'gamil.com': 'gmail.com',
+      'gmaill.com': 'gmail.com',
+      'gail.com': 'gmail.com',
+      'gmaim.com': 'gmail.com',
+      'yaho.com': 'yahoo.com',
+      'yahooo.com': 'yahoo.com',
+      'hotail.com': 'hotmail.com',
+      'hotmai.com': 'hotmail.com',
+      'outlok.com': 'outlook.com',
+      'outllok.com': 'outlook.com',
+      'gamil.co': 'gmail.com',
+      'gamil.con': 'gmail.com'
+    };
+    if (typos[domain]) {
+      emailInput.setCustomValidity(`Did you mean: ${emailVal.split('@')[0]}@${typos[domain]}?`);
+      return false;
+    }
+
+    // 3. 临时邮箱服务过滤 (Disposable/Temp email address filter)
+    const disposableDomains = [
+      'mailinator.com',
+      'tempmail.com',
+      'trashmail.com',
+      'yopmail.com',
+      '10minutemail.com',
+      'dispostable.com',
+      'guerrillamail.com',
+      'temp-mail.org',
+      'sharklasers.com',
+      'guerrillamailblock.com',
+      'guerrillamail.net',
+      'guerrillamail.org',
+      'guerrillamail.biz'
+    ];
+    if (disposableDomains.includes(domain)) {
+      emailInput.setCustomValidity('Disposable email addresses are not allowed. Please use a regular email address.');
+      return false;
+    }
+
+    return true;
+  }
+
   async handleSubmit(e) {
     e.preventDefault();
     if (this.isSubmitting) return;
 
     const formEl = this.querySelector('form');
+    const emailInput = this.querySelector('#earlyAccessEmail');
+
+    if (emailInput && !this.checkEmailValidity(emailInput)) {
+      return formEl.reportValidity();
+    }
+
     const cInput = this.querySelector('#earlyAccessCountry');
     const sInput = this.querySelector('#earlyAccessState');
     const yInput = this.querySelector('#earlyAccessCity');
@@ -211,6 +281,17 @@ class EarlyAccessForm extends HTMLElement {
       if (cityInput) cityInput.value = '';
     });
     this.setupInput('earlyAccessCity', 'city-dropdown', 'cities');
+
+    // 绑定邮箱输入与失去焦点的校验事件以实现即时校验反馈 (Bind email validation events)
+    const emailInput = this.querySelector('#earlyAccessEmail');
+    if (emailInput) {
+      emailInput.addEventListener('input', () => {
+        emailInput.setCustomValidity('');
+      });
+      emailInput.addEventListener('blur', () => {
+        this.checkEmailValidity(emailInput);
+      });
+    }
   }
 
   render() {
