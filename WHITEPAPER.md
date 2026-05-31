@@ -1,4 +1,4 @@
-# EchoSim.AI (艾可寻) — Official Whitepaper
+# EchoSim.AI — Official Whitepaper
 
 **Version 1.0 · 2026**
 
@@ -84,7 +84,7 @@ Learn more at **[https://echosim.ai](https://echosim.ai)**.
 
 ### 摘要
 
-当代异步社交软件优化的是「注意力」，而非「连接」。它们让用户无止境地划卡、打字，把它们承诺要解决的孤独本身变成了商业模式。EchoSim.AI（艾可寻）提出一种不同的范式：与其让两个陌生人经历数周低信噪比、高内耗的文字拉扯，不如让每位用户由一个高维人格模型——**AI 替身（AI Echo）**——在任何真人对话开始之前，先行模拟双方的关系动力学。兼容性在私密环境中被压力测试，只有最契合的配对才会进入线下见面。本白皮书阐述这一范式的动机、科学依据与隐私立场。
+当代异步社交软件优化的是「注意力」，而非「连接」。它们让用户无止境地划卡、打字，把它们承诺要解决的孤独本身变成了商业模式。EchoSim.AI 提出一种不同的范式：与其让两个陌生人经历数周低信噪比、高内耗的文字拉扯，不如让每位用户由一个高维人格模型——**AI 替身（AI Echo）**——在任何真人对话开始之前，先行模拟双方的关系动力学。兼容性在私密环境中被压力测试，只有最契合的配对才会进入线下见面。本白皮书阐述这一范式的动机、科学依据与隐私立场。
 
 ### 1. 困境：异步社交的精神内耗
 
@@ -152,4 +152,4 @@ EchoSim.AI 立志成为首个建立在高维人格克隆之上的下一代交友
 
 ---
 
-*© 2026 EchoSim.AI (艾可寻). All rights reserved. This document is provided for informational purposes only.*
+*© 2026 EchoSim.AI. All rights reserved. This document is provided for informational purposes only.*
