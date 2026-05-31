@@ -135,14 +135,36 @@ class EarlyAccessForm extends HTMLElement {
     return true;
   }
 
+  /**
+   * @description 处理表单提交事件。通过即时锁定 submission 状态，防止在异步验证或请求进行时用户重复快速点击提交按钮。
+   * @param {Event} e 表单提交事件对象
+   */
   async handleSubmit(e) {
     e.preventDefault();
     if (this.isSubmitting) return;
 
+    // 立即锁定并置灰提交按钮，防止在异步加载/验证期间重复提交
+    this.isSubmitting = true;
+    const submitBtn = this.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+    }
+
     const formEl = this.querySelector('form');
     const emailInput = this.querySelector('#earlyAccessEmail');
 
+    // 辅助恢复函数，在验证失败或捕获错误时重置状态与按钮
+    const resetSubmissionState = () => {
+      this.isSubmitting = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join Early Access';
+      }
+    };
+
     if (emailInput && !this.checkEmailValidity(emailInput)) {
+      resetSubmissionState();
       return formEl.reportValidity();
     }
 
@@ -163,6 +185,7 @@ class EarlyAccessForm extends HTMLElement {
         if (this.states.length === 0) await this.fetchStates(matched);
       } else {
         cInput.setCustomValidity('Please select a valid Country from the list.');
+        resetSubmissionState();
         return formEl.reportValidity();
       }
     }
@@ -175,6 +198,7 @@ class EarlyAccessForm extends HTMLElement {
         if (this.cities.length === 0) await this.fetchCities(this.selected.country, matched.name);
       } else {
         sInput.setCustomValidity('Please select a valid State/Province from the list.');
+        resetSubmissionState();
         return formEl.reportValidity();
       }
     }
@@ -186,12 +210,13 @@ class EarlyAccessForm extends HTMLElement {
         this.selected.city = matched;
       } else {
         yInput.setCustomValidity('Please select a valid City from the list.');
+        resetSubmissionState();
         return formEl.reportValidity();
       }
     }
 
     const formData = new FormData(formEl);
-    this.isSubmitting = true;
+    // 渲染表单以在开始真实提交请求前完全禁用所有的输入框
     this.render();
 
     const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/formResponse';
