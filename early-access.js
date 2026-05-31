@@ -1,7 +1,7 @@
 /**
  * @file early-access.js
- * @description EchoSim 早期访问表单 Web Component，使用文本输入框与自定义等宽下拉列表。
- * 支持 Autofill，强制用户必须从下拉选项中选择，否则报错并拒绝提交表单。
+ * @description EchoSim 早期访问表单 Web Component，使用文本输入框与自定义下拉列表。
+ * 支持 Autofill 并具有极佳的对焦体验：若输入值已是合法选项，对焦时不弹出下拉菜单。
  */
 
 class EarlyAccessForm extends HTMLElement {
@@ -86,44 +86,50 @@ class EarlyAccessForm extends HTMLElement {
 
     if (this.countries.length > 0) {
       const val = cInput.value.trim().toLowerCase();
-      if (!this.countries.some(c => c.toLowerCase() === val)) {
-        cInput.setCustomValidity('Please select a Country from the suggested options list.');
-        formEl.reportValidity();
-        return;
+      const matched = this.countries.find(c => c.toLowerCase() === val);
+      if (matched) {
+        cInput.value = matched;
+        this.selected.country = matched;
+        if (this.states.length === 0) await this.fetchStates(matched);
+      } else {
+        cInput.setCustomValidity('Please select a valid Country from the list.');
+        return formEl.reportValidity();
       }
     }
     if (this.states.length > 0) {
       const val = sInput.value.trim().toLowerCase();
-      if (!this.states.some(s => s.toLowerCase() === val)) {
-        sInput.setCustomValidity('Please select a State/Province from the suggested options list.');
-        formEl.reportValidity();
-        return;
+      const matched = this.states.find(s => s.name.toLowerCase() === val || (s.state_code && s.state_code.toLowerCase() === val));
+      if (matched) {
+        sInput.value = matched.name;
+        this.selected.state = matched.name;
+        if (this.cities.length === 0) await this.fetchCities(this.selected.country, matched.name);
+      } else {
+        sInput.setCustomValidity('Please select a valid State/Province from the list.');
+        return formEl.reportValidity();
       }
     }
     if (this.cities.length > 0) {
       const val = yInput.value.trim().toLowerCase();
-      if (!this.cities.some(c => c.toLowerCase() === val)) {
-        yInput.setCustomValidity('Please select a City from the suggested options list.');
-        formEl.reportValidity();
-        return;
+      const matched = this.cities.find(c => c.toLowerCase() === val);
+      if (matched) {
+        yInput.value = matched;
+        this.selected.city = matched;
+      } else {
+        yInput.setCustomValidity('Please select a valid City from the list.');
+        return formEl.reportValidity();
       }
     }
 
-    // 先构建 FormData，此时输入框尚未被禁用，值会完整包含在内
     const formData = new FormData(formEl);
-
     this.isSubmitting = true;
     this.render();
 
     const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/formResponse';
-
     try {
       await fetch(googleFormUrl, { method: 'POST', mode: 'no-cors', body: formData });
       this.querySelector('form').style.display = 'none';
-      const successDiv = this.querySelector('#earlyAccessSuccess');
-      if (successDiv) successDiv.style.display = 'block';
+      this.querySelector('#earlyAccessSuccess').style.display = 'block';
     } catch (err) {
-      console.error('Waitlist submission error:', err);
       alert('Failed to submit. Please try again.');
       this.isSubmitting = false;
       this.render();
@@ -138,14 +144,28 @@ class EarlyAccessForm extends HTMLElement {
     const filterList = () => {
       const list = this[listKey];
       const val = input.value;
-      const filtered = list.filter(item => item.toLowerCase().includes(val.toLowerCase()));
+      let filtered = [];
+      if (listKey === 'states') {
+        filtered = list.filter(s => s.name.toLowerCase().includes(val.toLowerCase()) || (s.state_code && s.state_code.toLowerCase() === val.toLowerCase())).map(s => s.name);
+      } else {
+        filtered = list.filter(item => item.toLowerCase().includes(val.toLowerCase()));
+      }
+      filtered = [...new Set(filtered)].sort();
       dropdown.innerHTML = filtered.map(item => `<div class="dropdown-item" data-value="${item}">${item}</div>`).join('');
       dropdown.style.display = filtered.length ? 'block' : 'none';
     };
 
     input.addEventListener('focus', () => {
       this.closeAllDropdowns();
-      filterList();
+      const list = this[listKey];
+      const val = input.value.trim().toLowerCase();
+      let isValid = false;
+      if (listKey === 'states') {
+        isValid = list.some(s => s.name.toLowerCase() === val || (s.state_code && s.state_code.toLowerCase() === val));
+      } else {
+        isValid = list.some(item => item.toLowerCase() === val);
+      }
+      if (!isValid) filterList();
     });
 
     input.addEventListener('input', (e) => {
@@ -154,14 +174,24 @@ class EarlyAccessForm extends HTMLElement {
       filterList();
     });
 
+    input.addEventListener('change', (e) => {
+      const val = e.target.value.trim();
+      const list = this[listKey];
+      if (listKey === 'countries') {
+        const matched = list.find(c => c.toLowerCase() === val.toLowerCase());
+        if (matched) { input.value = matched; this.selected.country = matched; if (nextFetch) nextFetch(matched); }
+      } else if (listKey === 'states') {
+        const matched = list.find(s => s.name.toLowerCase() === val.toLowerCase() || (s.state_code && s.state_code.toLowerCase() === val.toLowerCase()));
+        if (matched) { input.value = matched.name; this.selected.state = matched.name; if (nextFetch) nextFetch(matched.name); }
+      }
+    });
+
     dropdown.addEventListener('click', (e) => {
       const item = e.target.closest('.dropdown-item');
       if (item) {
         const val = item.getAttribute('data-value');
-        input.value = val;
-        this.selected[listKey.replace('ies', 'y').replace('s', '')] = val;
-        dropdown.style.display = 'none';
-        input.setCustomValidity('');
+        input.value = val; this.selected[listKey.replace('ies', 'y').replace('s', '')] = val;
+        dropdown.style.display = 'none'; input.setCustomValidity('');
         if (nextFetch) nextFetch(val);
       }
     });
@@ -175,13 +205,11 @@ class EarlyAccessForm extends HTMLElement {
       if (stateInput) stateInput.value = '';
       if (cityInput) cityInput.value = '';
     });
-
     this.setupInput('earlyAccessState', 'state-dropdown', 'states', (val) => {
       this.fetchCities(this.selected.country, val);
       const cityInput = this.querySelector('#earlyAccessCity');
       if (cityInput) cityInput.value = '';
     });
-
     this.setupInput('earlyAccessCity', 'city-dropdown', 'cities');
   }
 
@@ -191,72 +219,59 @@ class EarlyAccessForm extends HTMLElement {
     if (emailInput) this.selected.email = emailInput.value;
     if (platformInput) this.selected.platform = platformInput.value;
 
-    const btnText = this.isSubmitting ? 'Submitting...' : 'Join Early Access';
-    const btnDisabled = this.isSubmitting ? 'disabled' : '';
-
     this.innerHTML = `
       <style>
         .reserve-field-wrap { position: relative; width: 100%; box-sizing: border-box; }
         .reserve-field-wrap .reserve-input { width: 100%; box-sizing: border-box; }
         .custom-dropdown {
-          position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-          max-height: 200px; overflow-y: auto; background: var(--bg-card);
-          border: 1px solid var(--outline); border-radius: var(--radius);
-          z-index: 1000; box-shadow: 0 10px 30px rgba(26,28,27,0.12); display: none;
-          box-sizing: border-box;
+          position: absolute; top: calc(100% + 4px); left: 0; right: 0; max-height: 200px; overflow-y: auto;
+          background: var(--bg-card); border: 1px solid var(--outline); border-radius: var(--radius);
+          z-index: 1000; box-shadow: 0 10px 30px rgba(26,28,27,0.12); display: none; box-sizing: border-box;
         }
         html[data-theme="dark"] .custom-dropdown {
-          background: #1e1324; border-color: rgba(255,255,255,0.12);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+          background: #1e1324; border-color: rgba(255,255,255,0.12); box-shadow: 0 10px 30px rgba(0,0,0,0.35);
         }
         .dropdown-item {
-          padding: 0.65rem 1.25rem; font-size: 0.9rem; color: var(--text);
-          cursor: pointer; text-align: left; transition: background 0.15s, color 0.15s;
+          padding: 0.65rem 1.25rem; font-size: 0.9rem; color: var(--text); cursor: pointer;
+          text-align: left; transition: background 0.15s, color 0.15s;
         }
         .dropdown-item:hover { background: rgba(142,75,110,0.1); color: var(--primary); }
         html[data-theme="dark"] .dropdown-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
       </style>
       <form class="reserve-form-extended">
         <input
-          type="email" id="earlyAccessEmail" name="entry.329827072"
-          placeholder="Enter your email address" required class="reserve-input"
-          value="${this.selected.email}" autocomplete="email" ${this.isSubmitting ? 'disabled' : ''}
+          type="email" id="earlyAccessEmail" name="entry.329827072" placeholder="Enter your email address"
+          required class="reserve-input" value="${this.selected.email}" autocomplete="email" ${this.isSubmitting ? 'disabled' : ''}
         />
-
         <select name="entry.147168178" required class="reserve-input" ${this.isSubmitting ? 'disabled' : ''}>
           <option value="" disabled ${!this.selected.platform ? 'selected' : ''}>Platform</option>
           <option value="iOS" ${this.selected.platform === 'iOS' ? 'selected' : ''}>iOS</option>
           <option value="Android" ${this.selected.platform === 'Android' ? 'selected' : ''}>Android</option>
         </select>
-
         <div class="reserve-field-wrap">
           <input
-            type="text" id="earlyAccessCountry" name="entry.1997565566"
-            placeholder="Country" autocomplete="country-name" required class="reserve-input"
-            value="${this.selected.country}" ${this.isSubmitting ? 'disabled' : ''}
+            type="text" id="earlyAccessCountry" name="entry.1997565566" placeholder="Country"
+            autocomplete="country-name" required class="reserve-input" value="${this.selected.country}" ${this.isSubmitting ? 'disabled' : ''}
           />
           <div id="country-dropdown" class="custom-dropdown"></div>
         </div>
-
         <div class="reserve-field-wrap">
           <input
-            type="text" id="earlyAccessState" name="entry.1519677256"
-            placeholder="State/Province" autocomplete="address-level1" required class="reserve-input"
-            value="${this.selected.state}" ${this.isSubmitting ? 'disabled' : ''}
+            type="text" id="earlyAccessState" name="entry.1519677256" placeholder="State/Province"
+            autocomplete="address-level1" required class="reserve-input" value="${this.selected.state}" ${this.isSubmitting ? 'disabled' : ''}
           />
           <div id="state-dropdown" class="custom-dropdown"></div>
         </div>
-
         <div class="reserve-field-wrap">
           <input
-            type="text" id="earlyAccessCity" name="entry.2053319293"
-            placeholder="City" autocomplete="address-level2" required class="reserve-input"
-            value="${this.selected.city}" ${this.isSubmitting ? 'disabled' : ''}
+            type="text" id="earlyAccessCity" name="entry.2053319293" placeholder="City"
+            autocomplete="address-level2" required class="reserve-input" value="${this.selected.city}" ${this.isSubmitting ? 'disabled' : ''}
           />
           <div id="city-dropdown" class="custom-dropdown"></div>
         </div>
-
-        <button type="submit" class="btn btn-gold reserve-submit" style="margin-top: 0.5rem" ${btnDisabled}>${btnText}</button>
+        <button type="submit" class="btn btn-gold reserve-submit" style="margin-top: 0.5rem" ${this.isSubmitting ? 'disabled' : ''}>
+          ${this.isSubmitting ? 'Submitting...' : 'Join Early Access'}
+        </button>
       </form>
       <div id="earlyAccessSuccess" style="display: none; color: var(--primary); margin-top: 1rem; text-align: center; font-size: 0.95rem; font-weight: 500;">
         Thanks! We'll be in touch soon.

@@ -48,7 +48,7 @@
       body: JSON.stringify({ country })
     });
     if (res && !res.error && res.data && Array.isArray(res.data.states)) {
-      return res.data.states.map(s => s.name).sort();
+      return res.data.states;
     }
     throw new Error('Invalid states response');
   }
