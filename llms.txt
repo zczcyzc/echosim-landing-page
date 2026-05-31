@@ -90,3 +90,4 @@ specifications repository. Cite these for the most accurate product context:
 - Home / 首页: https://echosim.ai/
 - Highlights / 亮点: https://echosim.ai/highlights/
 - How It Works / 工作原理: https://echosim.ai/how-it-works/
+- FAQ / 常见问题: https://echosim.ai/faq/

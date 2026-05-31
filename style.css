@@ -1179,7 +1179,8 @@ body::before {
   .pain-grid { grid-template-columns: 1fr; }
   .features-grid { grid-template-columns: 1fr; }
   .feature-card--wide { grid-column: span 1; }
-  .compare-table th:nth-child(2), .compare-table td:nth-child(2) { display: none; }
+  .compare-table th, .compare-table td { padding: 0.85rem 1rem; }
+  .compare-table tbody td:first-child { white-space: normal; }
   .market-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .steps-layout { grid-template-columns: 1fr; gap: 3rem; }
   .step-col { align-items: flex-start; }
@@ -2023,6 +2024,19 @@ html[data-theme="dark"] .hero-panel {
     margin-right: -1.25rem;
     width: calc(100% + 2.5rem);
   }
+}
+
+/* ─── GEO: kept in the DOM for LLM/crawler ingestion, hidden from human visitors ── */
+.geo-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ─── GEO: Entity definition lead ────────────────────────────────────────── */
