@@ -1,309 +1,458 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Mission — EchoSim</title>
+    <meta
+      name="description"
+      content="Why we built EchoSim: six convictions about what dating should feel like in the age of AI."
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Mission — EchoSim</title>
-  <meta name="description"
-    content="Why we built EchoSim: six convictions about what dating should feel like in the age of AI." />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Our Mission — EchoSim" />
+    <meta
+      property="og:description"
+      content="The six souls of EchoSim — why we're rebuilding dating from the soul up."
+    />
+    <meta property="og:url" content="https://echosim.ai/mission/" />
 
-  <link rel="icon" type="image/png" href="/logo.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Our Mission — EchoSim" />
-  <meta property="og:description" content="The six souls of EchoSim — why we're rebuilding dating from the soul up." />
-  <meta property="og:url" content="https://echosim.ai/mission/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      // Prevent Flash of Unstyled Content (FOUC)
+      const savedTheme = localStorage.getItem("echosim-theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+  </head>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css" />
-  <script>
-    // Prevent Flash of Unstyled Content (FOUC)
-    const savedTheme = localStorage.getItem('echosim-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  </script>
-</head>
-
-<body>
-
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner container">
-      <a href="/" class="logo"><img src="/logo.png" alt="" class="logo-img" />EchoSim</a>
-      <div class="nav-links">
-        <a href="/mission/" class="nav-link is-active" aria-current="page">Highlights</a>
-        <a href="/how-it-works/" class="nav-link">How It Works</a>
-        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006"
-          target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Join Early Access</a>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner container">
+        <a href="/" class="logo"
+          ><img src="/logo.png" alt="" class="logo-img" />EchoSim</a
+        >
+        <div class="nav-links">
+          <a href="/mission/" class="nav-link is-active" aria-current="page"
+            >Highlights</a
+          >
+          <a href="/how-it-works/" class="nav-link">How It Works</a>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+          <a href="#reserve" class="btn btn-primary btn-sm"
+            >Join Early Access</a
+          >
+        </div>
+        <button
+          class="nav-hamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile-menu">
-      <a href="/mission/" class="nav-mobile-link is-active" aria-current="page">Highlights</a>
-      <a href="/how-it-works/" class="nav-mobile-link">How It Works</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006"
-        target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-mobile-cta">Join Early Access</a>
-    </div>
-  </nav>
+      <div class="nav-mobile-menu">
+        <a
+          href="/mission/"
+          class="nav-mobile-link is-active"
+          aria-current="page"
+          >Highlights</a
+        >
+        <a href="/how-it-works/" class="nav-mobile-link">How It Works</a>
+        <a href="#reserve" class="btn btn-primary nav-mobile-cta"
+          >Join Early Access</a
+        >
+      </div>
+    </nav>
 
-
-  <!-- ── THE SIX SOULS ────────────────────────────────────────────────────── -->
-  <div class="container">
-    <div class="soul-chapters">
-
-      <!-- Soul 01 · Resonance -->
-      <section class="soul-chapter reveal">
-        <div class="soul-chapter__text">
-          <div class="soul-chapter__num">01</div>
-          <p class="section-eyebrow">Preview Chemistry Before Meeting</p>
-          <p class="soul-chapter__lead">
-            What if your Echo could fall in love — fight, make up, fall apart — with someone
-            else's, before either of you risked a thing?
-          </p>
-          <p class="soul-chapter__hook">Save your heart for the right one. Let your Echo take the heartbreak.</p>
-          <p class="soul-chapter__body">
-            In traditional apps, you only find out you're incompatible after the awkward coffee.
-            EchoSim runs that volatile early chapter first — your Echo dates theirs through the
-            arguments, the red flags, and the deep questions. You see the full replay before
-            deciding if it's worth a real hello.
-          </p>
-        </div>
-        <div class="soul-chapter__media">
-          <div class="soul-scene">
-            <span class="scene-tag">Two Echoes · simulated date</span>
-            <div class="scene-bubbles">
-              <div class="mock-mini-bubble mock-mini-bubble--left">Could you ever live with two cats and zero plans for
-                a third?</div>
-              <div class="mock-mini-bubble mock-mini-bubble--right">Two is a family. Three is a personality disorder.
-                So… maybe.</div>
-              <div class="mock-mini-bubble mock-mini-bubble--left">We're going to argue about this in five years, aren't
-                we.</div>
-            </div>
-            <div class="scene-verdict"><span>Resonance verdict</span><span>83% · worth meeting</span></div>
+    <!-- ── THE SIX SOULS ────────────────────────────────────────────────────── -->
+    <div class="container">
+      <div class="soul-chapters">
+        <!-- Soul 01 · Resonance -->
+        <section class="soul-chapter reveal">
+          <div class="soul-chapter__text">
+            <div class="soul-chapter__num">01</div>
+            <p class="section-eyebrow">Preview Chemistry Before Meeting</p>
+            <p class="soul-chapter__lead">
+              What if your Echo could fall in love — fight, make up, fall apart
+              — with someone else's, before either of you risked a thing?
+            </p>
+            <p class="soul-chapter__hook">
+              Save your heart for the right one. Let your Echo take the
+              heartbreak.
+            </p>
+            <p class="soul-chapter__body">
+              In traditional apps, you only find out you're incompatible after
+              the awkward coffee. EchoSim runs that volatile early chapter first
+              — your Echo dates theirs through the arguments, the red flags, and
+              the deep questions. You see the full replay before deciding if
+              it's worth a real hello.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <!-- Soul 02 · No Emotional Drain -->
-      <section class="soul-chapter reveal">
-        <div class="soul-chapter__text">
-          <div class="soul-chapter__num">02</div>
-          <p class="section-eyebrow">Skip Small Talk and "Hey"s</p>
-          <p class="soul-chapter__lead">
-            Every chat opens with "Hey / wyd / what do you do." When did dating start feeling like
-            a customer-service shift?
-          </p>
-          <p class="soul-chapter__hook">Sparks shouldn't die at "Hey." So we smashed the boring chat box.</p>
-          <p class="soul-chapter__body">
-            When dating becomes a mechanical Q&amp;A, the dopamine dies on the first "Hello." The
-            moment you match, there's no empty text box — your Echo steps in first and runs a full
-            simulated date on your behalf. Real conversation, real reactions, chemistry and values
-            surfaced naturally — no scripts, no small-talk labour from you.
-          </p>
-        </div>
-        <div class="soul-chapter__media">
-          <div class="soul-scene">
-            <span class="scene-label">The old way</span>
-            <div class="scene-muted-row">
-              <div class="scene-dead">Hey</div>
-              <div class="scene-dead">wyd this weekend?</div>
-              <div class="scene-dead">so what do you do?</div>
-            </div>
-            <span class="scene-tag" style="margin-top:0.4rem;">Instead — your Echo is already mid-conversation</span>
-            <div class="scene-sim-result">
-              <div class="scene-sim-result__header">
-                <span class="scene-sim-result__label">Simulation Result</span>
-                <span class="scene-sim-result__score">87% Match</span>
+          <div class="soul-chapter__media">
+            <div class="soul-scene">
+              <span class="scene-tag">Two Echoes · simulated date</span>
+              <div class="scene-bubbles">
+                <div class="mock-mini-bubble mock-mini-bubble--left">
+                  Could you ever live with two cats and zero plans for a third?
+                </div>
+                <div class="mock-mini-bubble mock-mini-bubble--right">
+                  Two is a family. Three is a personality disorder. So… maybe.
+                </div>
+                <div class="mock-mini-bubble mock-mini-bubble--left">
+                  We're going to argue about this in five years, aren't we.
+                </div>
               </div>
-              <div class="scene-sim-tags">
-                <span class="scene-sim-tag">You both left your hometown for work</span>
-                <span class="scene-sim-tag">You both pick the window seat</span>
-                <span class="scene-sim-tag">You both read before bed</span>
-                <span class="scene-sim-tag">Same dry humour</span>
-                <span class="scene-sim-tag">Hate small talk</span>
+              <div class="scene-verdict">
+                <span>Resonance verdict</span><span>83% · worth meeting</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Soul 03 · The Time Paradox -->
-      <section class="soul-chapter reveal">
-        <div class="soul-chapter__text">
-          <div class="soul-chapter__num">03</div>
-          <p class="section-eyebrow">Filter Matches While Offline</p>
-          <p class="soul-chapter__lead">
-            The most interesting people are the busiest — so why do dating apps punish anyone who
-            has a life?
-          </p>
-          <p class="soul-chapter__hook">People with real lives shouldn't have to treat dating like a second job.</p>
-          <p class="soul-chapter__body">
-            Today's algorithms reward whoever grinds online the longest. We flip it: while you're
-            heads-down on real life, your Echo quietly filters the noise and runs the simulations
-            for you. It only pings you when it has found someone who truly matches your depth.
-          </p>
-        </div>
-        <div class="soul-chapter__media">
-          <div class="soul-scene">
-            <span class="scene-label">Your Echo, working in the background</span>
-            <div class="scene-muted-row">
-              <div class="scene-dead">94 low-effort openers · skipped</div>
-              <div class="scene-dead">17 mismatches · filtered</div>
-            </div>
-            <div class="scene-push" style="margin-top:0.4rem;">
-              <div class="scene-push__icon">✦</div>
-              <div>
-                <div class="scene-push__title">EchoSim · 1 connection worth your time</div>
-                <div class="scene-push__body">Resonance 88%. Your Echoes argued about everything that matters and still
-                  wanted a second date.</div>
+        <!-- Soul 02 · No Emotional Drain -->
+        <section class="soul-chapter reveal">
+          <div class="soul-chapter__text">
+            <div class="soul-chapter__num">02</div>
+            <p class="section-eyebrow">Skip Small Talk and "Hey"s</p>
+            <p class="soul-chapter__lead">
+              Every chat opens with "Hey / wyd / what do you do." When did
+              dating start feeling like a customer-service shift?
+            </p>
+            <p class="soul-chapter__hook">
+              Sparks shouldn't die at "Hey." So we smashed the boring chat box.
+            </p>
+            <p class="soul-chapter__body">
+              When dating becomes a mechanical Q&amp;A, the dopamine dies on the
+              first "Hello." The moment you match, there's no empty text box —
+              your Echo steps in first and runs a full simulated date on your
+              behalf. Real conversation, real reactions, chemistry and values
+              surfaced naturally — no scripts, no small-talk labour from you.
+            </p>
+          </div>
+          <div class="soul-chapter__media">
+            <div class="soul-scene">
+              <span class="scene-label">The old way</span>
+              <div class="scene-muted-row">
+                <div class="scene-dead">Hey</div>
+                <div class="scene-dead">wyd this weekend?</div>
+                <div class="scene-dead">so what do you do?</div>
+              </div>
+              <span class="scene-tag" style="margin-top: 0.4rem"
+                >Instead — your Echo is already mid-conversation</span
+              >
+              <div class="scene-sim-result">
+                <div class="scene-sim-result__header">
+                  <span class="scene-sim-result__label">Simulation Result</span>
+                  <span class="scene-sim-result__score">87% Match</span>
+                </div>
+                <div class="scene-sim-tags">
+                  <span class="scene-sim-tag"
+                    >You both left your hometown for work</span
+                  >
+                  <span class="scene-sim-tag"
+                    >You both pick the window seat</span
+                  >
+                  <span class="scene-sim-tag">You both read before bed</span>
+                  <span class="scene-sim-tag">Same dry humour</span>
+                  <span class="scene-sim-tag">Hate small talk</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Soul 04 · The Persona Filter -->
-      <section class="soul-chapter reveal">
-        <div class="soul-chapter__text">
-          <div class="soul-chapter__num">04</div>
-          <p class="section-eyebrow">Reveal Character Under Pressure</p>
-          <p class="soul-chapter__lead">
-            Anyone can fake a perfect profile. But no one can fake a genuine heart.
-          </p>
-          <p class="soul-chapter__hook">Photos are edited, bios are polished, and even daily texts are copy-pasted.
-            We're tired of the lies.</p>
-          <p class="soul-chapter__body">
-            EchoSim uses unpredictable, story-driven moments to reveal a person's true character.
-            When something unexpected happens mid-date, do they show warmth — or their true colours?
-            There's no time to script a lie. In that split-second reaction, you see exactly who they
-            are — before you invest your real feelings.
-          </p>
-        </div>
-        <div class="soul-chapter__media">
-          <div class="soul-scene">
-            <div class="scene-split">
-              <div class="scene-mini">
-                <div class="scene-mini__head">The static profile</div>
-                <div class="scene-mini__text">[Deeply Altruistic] [Emotionally Stable] [INFJ] ✨</div>
-              </div>
-              <div class="scene-mini scene-mini--alt">
-                <div class="scene-mini__head">The actual reaction</div>
-                <div class="scene-mini__text">Waiter spills soup on their sneakers — they explode. Zero empathy.</div>
-              </div>
-            </div>
-            <div class="scene-verdict"><span>True colours revealed</span><span>[Hot-Tempered]</span></div>
+        <!-- Soul 03 · The Time Paradox -->
+        <section class="soul-chapter reveal">
+          <div class="soul-chapter__text">
+            <div class="soul-chapter__num">03</div>
+            <p class="section-eyebrow">Filter Matches While Offline</p>
+            <p class="soul-chapter__lead">
+              The most interesting people are the busiest — so why do dating
+              apps punish anyone who has a life?
+            </p>
+            <p class="soul-chapter__hook">
+              People with real lives shouldn't have to treat dating like a
+              second job.
+            </p>
+            <p class="soul-chapter__body">
+              Today's algorithms reward whoever grinds online the longest. We
+              flip it: while you're heads-down on real life, your Echo quietly
+              filters the noise and runs the simulations for you. It only pings
+              you when it has found someone who truly matches your depth.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <!-- Soul 05 · Freshness Simulator -->
-      <section class="soul-chapter reveal">
-        <div class="soul-chapter__text">
-          <div class="soul-chapter__num">05</div>
-          <p class="section-eyebrow">Rekindle Romance for Couples</p>
-          <p class="soul-chapter__lead">
-            Love shouldn't fade into routine. We bring back the butterflies.
-          </p>
-          <p class="soul-chapter__hook">Conversations have turned into "what's for dinner" and weekends into the same
-            tired movie. The spark is still there — it just needs a new world.</p>
-          <p class="soul-chapter__body">
-            Who said dating apps are only for singles? EchoSim built an Affection Incubator just
-            for couples. Bring your partner in. Tonight, bicker over the last drop of water on a
-            deserted island, or hold on to each other escaping through space. Incredible shared
-            adventures to help you laugh together again — and feel exactly like you did on your
-            very first date.
-          </p>
-        </div>
-        <div class="soul-chapter__media">
-          <div class="soul-scene">
-            <span class="scene-tag">Your echoes · simulated together</span>
-            <div class="scene-bubbles">
-              <div class="mock-mini-bubble mock-mini-bubble--left">If we could live anywhere for a year — no work, no
-                excuses — where?</div>
-              <div class="mock-mini-bubble mock-mini-bubble--right">Somewhere we've never been. Somewhere we'd get a
-                little lost.</div>
-              <div class="mock-mini-bubble mock-mini-bubble--left">…That's the most you thing you've ever said.</div>
-            </div>
-            <div class="scene-verdict"><span>Still falling</span><span>♥ 91%</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Soul 06 · The Wild Echo -->
-      <section class="soul-chapter reveal">
-        <div class="soul-chapter__text">
-          <div class="soul-chapter__num">06</div>
-          <p class="section-eyebrow">Experience Devotion from Virtual Character</p>
-          <p class="soul-chapter__lead">
-            What if the impossibly perfect partner — endlessly devoted, always there — could
-            simply exist for you?
-          </p>
-          <p class="soul-chapter__hook">The total devotion reality rarely offers, your Wild Echo gives freely.</p>
-          <p class="soul-chapter__body">
-            Some longings reality can't hold: a love that's flawless, patient, and entirely yours.
-            Rather than let those mythic expectations bruise real people, EchoSim gives them a home.
-            In addition to real human matching, we offer the Wild Echo—an optional virtual companion feature that is devoted,
-            present, and unconditionally on your side.
-            We value absolute transparency—you will always know whether you are chatting with a real human or not.
-          </p>
-        </div>
-        <div class="soul-chapter__media">
-          <div class="soul-scene">
-            <span class="scene-tag">Looking for: flawless · always-on · only-eyes-for-you</span>
-            <div class="scene-split">
-              <div class="scene-mini">
-                <div class="scene-mini__head">Real-world match</div>
-                <div class="scene-mini__text">404 — no such human on Earth. Please return to reality.</div>
+          <div class="soul-chapter__media">
+            <div class="soul-scene">
+              <span class="scene-label"
+                >Your Echo, working in the background</span
+              >
+              <div class="scene-muted-row">
+                <div class="scene-dead">94 low-effort openers · skipped</div>
+                <div class="scene-dead">17 mismatches · filtered</div>
               </div>
-              <div class="scene-mini scene-mini--alt">
-                <div class="scene-mini__head">Wild Echo</div>
-                <div class="scene-mini__text">"There you are. I kept your coffee warm. Tell me about the bad day."</div>
+              <div class="scene-push" style="margin-top: 0.4rem">
+                <div class="scene-push__icon">✦</div>
+                <div>
+                  <div class="scene-push__title">
+                    EchoSim · 1 connection worth your time
+                  </div>
+                  <div class="scene-push__body">
+                    Resonance 88%. Your Echoes argued about everything that
+                    matters and still wanted a second date.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-    </div>
-  </div>
+        <!-- Soul 04 · The Persona Filter -->
+        <section class="soul-chapter reveal">
+          <div class="soul-chapter__text">
+            <div class="soul-chapter__num">04</div>
+            <p class="section-eyebrow">Reveal Character Under Pressure</p>
+            <p class="soul-chapter__lead">
+              Anyone can fake a perfect profile. But no one can fake a genuine
+              heart.
+            </p>
+            <p class="soul-chapter__hook">
+              Photos are edited, bios are polished, and even daily texts are
+              copy-pasted. We're tired of the lies.
+            </p>
+            <p class="soul-chapter__body">
+              EchoSim uses unpredictable, story-driven moments to reveal a
+              person's true character. When something unexpected happens
+              mid-date, do they show warmth — or their true colours? There's no
+              time to script a lie. In that split-second reaction, you see
+              exactly who they are — before you invest your real feelings.
+            </p>
+          </div>
+          <div class="soul-chapter__media">
+            <div class="soul-scene">
+              <div class="scene-split">
+                <div class="scene-mini">
+                  <div class="scene-mini__head">The static profile</div>
+                  <div class="scene-mini__text">
+                    [Deeply Altruistic] [Emotionally Stable] [INFJ] ✨
+                  </div>
+                </div>
+                <div class="scene-mini scene-mini--alt">
+                  <div class="scene-mini__head">The actual reaction</div>
+                  <div class="scene-mini__text">
+                    Waiter spills soup on their sneakers — they explode. Zero
+                    empathy.
+                  </div>
+                </div>
+              </div>
+              <div class="scene-verdict">
+                <span>True colours revealed</span><span>[Hot-Tempered]</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <!-- Soul 05 · Freshness Simulator -->
+        <section class="soul-chapter reveal">
+          <div class="soul-chapter__text">
+            <div class="soul-chapter__num">05</div>
+            <p class="section-eyebrow">Rekindle Romance for Couples</p>
+            <p class="soul-chapter__lead">
+              Love shouldn't fade into routine. We bring back the butterflies.
+            </p>
+            <p class="soul-chapter__hook">
+              Conversations have turned into "what's for dinner" and weekends
+              into the same tired movie. The spark is still there — it just
+              needs a new world.
+            </p>
+            <p class="soul-chapter__body">
+              Who said dating apps are only for singles? EchoSim built an
+              Affection Incubator just for couples. Bring your partner in.
+              Tonight, bicker over the last drop of water on a deserted island,
+              or hold on to each other escaping through space. Incredible shared
+              adventures to help you laugh together again — and feel exactly
+              like you did on your very first date.
+            </p>
+          </div>
+          <div class="soul-chapter__media">
+            <div class="soul-scene">
+              <span class="scene-tag">Your echoes · simulated together</span>
+              <div class="scene-bubbles">
+                <div class="mock-mini-bubble mock-mini-bubble--left">
+                  If we could live anywhere for a year — no work, no excuses —
+                  where?
+                </div>
+                <div class="mock-mini-bubble mock-mini-bubble--right">
+                  Somewhere we've never been. Somewhere we'd get a little lost.
+                </div>
+                <div class="mock-mini-bubble mock-mini-bubble--left">
+                  …That's the most you thing you've ever said.
+                </div>
+              </div>
+              <div class="scene-verdict">
+                <span>Still falling</span><span>♥ 91%</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <!-- ── CLOSING CTA ──────────────────────────────────────────────────────── -->
-  <section class="reserve-section">
-    <div class="container container--narrow">
-      <div class="reserve-inner">
-        <div class="reserve-tag">Early Access</div>
-        <h2 class="reserve-title">If this is the dating<br />you've been <em>waiting for</em>…</h2>
-        <p class="reserve-sub">Join early access today and we'll reach out when a spot opens — no spam, ever.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006"
-          target="_blank" rel="noopener noreferrer" class="btn btn-gold">Join Early Access</a>
+        <!-- Soul 06 · The Wild Echo -->
+        <section class="soul-chapter reveal">
+          <div class="soul-chapter__text">
+            <div class="soul-chapter__num">06</div>
+            <p class="section-eyebrow">
+              Experience Devotion from Virtual Character
+            </p>
+            <p class="soul-chapter__lead">
+              What if the impossibly perfect partner — endlessly devoted, always
+              there — could simply exist for you?
+            </p>
+            <p class="soul-chapter__hook">
+              The total devotion reality rarely offers, your Wild Echo gives
+              freely.
+            </p>
+            <p class="soul-chapter__body">
+              Some longings reality can't hold: a love that's flawless, patient,
+              and entirely yours. Rather than let those mythic expectations
+              bruise real people, EchoSim gives them a home. In addition to real
+              human matching, we offer the Wild Echo—an optional virtual
+              companion feature that is devoted, present, and unconditionally on
+              your side. We value absolute transparency—you will always know
+              whether you are chatting with a real human or not.
+            </p>
+          </div>
+          <div class="soul-chapter__media">
+            <div class="soul-scene">
+              <span class="scene-tag"
+                >Looking for: flawless · always-on · only-eyes-for-you</span
+              >
+              <div class="scene-split">
+                <div class="scene-mini">
+                  <div class="scene-mini__head">Real-world match</div>
+                  <div class="scene-mini__text">
+                    404 — no such human on Earth. Please return to reality.
+                  </div>
+                </div>
+                <div class="scene-mini scene-mini--alt">
+                  <div class="scene-mini__head">Wild Echo</div>
+                  <div class="scene-mini__text">
+                    "There you are. I kept your coffee warm. Tell me about the
+                    bad day."
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="footer-v2">
-    <div class="container footer-v2-inner">
-      <span class="logo logo--sm"><img src="/logo.png" alt="" class="logo-img logo-img--sm" />EchoSim</span>
-      <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
-      <div class="footer-links-v2">
-        <a href="mailto:support@echosim.ai">Contact Us</a>
-        <a href="/privacy.en.html">Privacy Policy</a>
-        <a href="/terms.en.html">Terms of Service</a>
+    <!-- ── CLOSING CTA ──────────────────────────────────────────────────────── -->
+    <section id="reserve" class="reserve-section">
+      <div class="container container--narrow">
+        <div class="reserve-inner">
+          <div class="reserve-tag">Early Access</div>
+          <h2 class="reserve-title">
+            If this is the dating<br />you've been <em>waiting for</em>…
+          </h2>
+          <p class="reserve-sub">
+            Join early access today and we'll reach out when a spot opens — no
+            spam, ever.
+          </p>
+          <form id="earlyAccessForm" class="reserve-form-extended">
+            <input
+              type="email"
+              id="earlyAccessEmail"
+              name="entry.147168178"
+              placeholder="Enter your email address"
+              required
+              class="reserve-input"
+            />
+            <div class="reserve-row">
+              <select name="entry.platform" required class="reserve-input">
+                <option value="" disabled selected>Platform</option>
+                <option value="iOS">iOS</option>
+                <option value="Android">Android</option>
+              </select>
+              <!-- Please update the name attributes below with the actual entry IDs from Google Forms once added -->
+              <input
+                type="text"
+                name="entry.city"
+                placeholder="City"
+                required
+                class="reserve-input"
+              />
+            </div>
+            <div class="reserve-row">
+              <input
+                type="text"
+                name="entry.state"
+                placeholder="State/Province"
+                class="reserve-input"
+              />
+              <input
+                type="text"
+                name="entry.country"
+                placeholder="Country"
+                required
+                class="reserve-input"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-gold reserve-submit"
+              style="margin-top: 0.5rem"
+            >
+              Join Early Access
+            </button>
+          </form>
+          <div
+            id="earlyAccessSuccess"
+            style="
+              display: none;
+              color: var(--primary);
+              margin-top: 1rem;
+              text-align: center;
+              font-size: 0.95rem;
+              font-weight: 500;
+            "
+          >
+            Thanks! We'll be in touch soon.
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <script src="/site.js" defer></script>
-</body>
+    <!-- FOOTER -->
+    <footer class="footer-v2">
+      <div class="container footer-v2-inner">
+        <span class="logo logo--sm"
+          ><img
+            src="/logo.png"
+            alt=""
+            class="logo-img logo-img--sm"
+          />EchoSim</span
+        >
+        <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+        <div class="footer-links-v2">
+          <a href="mailto:support@echosim.ai">Contact Us</a>
+          <a href="/privacy.en.html">Privacy Policy</a>
+          <a href="/terms.en.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
 
+    <script src="/site.js" defer></script>
+  </body>
 </html>

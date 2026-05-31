@@ -1,279 +1,414 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EchoSim — Let Your Echo Go on the First Date</title>
+    <meta
+      name="description"
+      content="Echo creates your AI dating twin. It handles the awkward early chats. You show up when chemistry is proven."
+    />
+    <link rel="icon" type="image/png" href="/logo.png" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EchoSim — Let Your Echo Go on the First Date</title>
-  <meta name="description"
-    content="Echo creates your AI dating twin. It handles the awkward early chats. You show up when chemistry is proven." />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="EchoSim — Let Your Echo Go on the First Date"
+    />
+    <meta
+      property="og:description"
+      content="Echo builds a digital twin of you. It simulates dates on your behalf. You only step in when the chemistry is real."
+    />
+    <meta property="og:url" content="https://echosim.ai" />
 
-  <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="EchoSim — Let Your Echo Go on the First Date"
+    />
+    <meta
+      name="twitter:description"
+      content="Echo builds a digital twin of you. It simulates dates on your behalf. You only step in when the chemistry is real."
+    />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="EchoSim — Let Your Echo Go on the First Date" />
-  <meta property="og:description"
-    content="Echo builds a digital twin of you. It simulates dates on your behalf. You only step in when the chemistry is real." />
-  <meta property="og:url" content="https://echosim.ai" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      // Prevent Flash of Unstyled Content (FOUC)
+      const savedTheme = localStorage.getItem("echosim-theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+  </head>
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="EchoSim — Let Your Echo Go on the First Date" />
-  <meta name="twitter:description"
-    content="Echo builds a digital twin of you. It simulates dates on your behalf. You only step in when the chemistry is real." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css" />
-  <script>
-    // Prevent Flash of Unstyled Content (FOUC)
-    const savedTheme = localStorage.getItem('echosim-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  </script>
-</head>
-
-<body>
-
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner container">
-      <a href="/" class="logo"><img src="/logo.png" alt="" class="logo-img" />EchoSim</a>
-      <div class="nav-links">
-        <a href="/mission/" class="nav-link">Highlights</a>
-        <a href="/how-it-works/" class="nav-link">How It Works</a>
-        <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006"
-          target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Join Early Access</a>
-      </div>
-      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile-menu">
-      <a href="/mission/" class="nav-mobile-link">Highlights</a>
-      <a href="/how-it-works/" class="nav-mobile-link">How It Works</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006"
-        target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-mobile-cta">Join Early Access</a>
-    </div>
-  </nav>
-
-  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
-  <section class="hero hero--photo">
-    <div class="hero-bg">
-      <img src="/images/hero-couple.jpg" alt="Two people connecting on a first date" class="photo__img" loading="eager"
-        onerror="this.classList.add('photo__img--missing')" />
-      <span class="hero-bg__hint">
-        <span class="photo__icon" aria-hidden="true">📷</span>
-        <code>/images/hero-couple.jpg</code>
-        <span>Drop background photo · 1920 × 1200</span>
-      </span>
-    </div>
-    <div class="container hero-inner">
-      <div class="hero-panel">
-        <div class="hero-tag">EchoSim · Now in Beta</div>
-        <h1 class="hero-headline">
-          Let your Echo<br />
-          <em>go on the first date.</em>
-        </h1>
-        <p class="hero-sub">
-          Echo is your digital twin — trained on your personality, your vibe, your standards.
-          It goes on dates for you, surfaces real chemistry, and only calls you in when the spark is worth your time.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── EDITORIAL · Why it matters (photo + text) ────────────────────────── -->
-  <section class="section">
-    <div class="container">
-      <div class="editorial editorial--split-mobile reveal">
-        <div class="editorial__media">
-          <!-- 使用 .photo--editorial-life 渲染 16:9 比例图片 -->
-          <figure class="photo photo--editorial-life">
-            <img src="/images/editorial-life.jpg" alt="Living life instead of swiping" class="photo__img" loading="lazy"
-              onerror="this.classList.add('photo__img--missing')" />
-            <figcaption class="photo__hint">
-              <span class="photo__icon" aria-hidden="true">📷</span>
-              <code>/images/editorial-life.jpg</code>
-              <span>Drop photo · 1792 × 1008</span>
-            </figcaption>
-          </figure>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner container">
+        <a href="/" class="logo"
+          ><img src="/logo.png" alt="" class="logo-img" />EchoSim</a
+        >
+        <div class="nav-links">
+          <a href="/mission/" class="nav-link">Highlights</a>
+          <a href="/how-it-works/" class="nav-link">How It Works</a>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+          <a href="#reserve" class="btn btn-primary btn-sm"
+            >Join Early Access</a
+          >
         </div>
-        <div class="editorial__text">
-          <p class="editorial__eyebrow">Why EchoSim</p>
-          <h2 class="editorial__title">More than dating. <em>It's a movie starring you.</em></h2>
-          <p class="editorial__body">
-            Take the pressure off the search and enjoy the journey. Let your digital twin experience fascinating stories
-            and unexpected encounters for you to look back on. It's like watching a great movie — except this time, the protagonist is you.
+        <button
+          class="nav-hamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile-menu">
+        <a href="/mission/" class="nav-mobile-link">Highlights</a>
+        <a href="/how-it-works/" class="nav-mobile-link">How It Works</a>
+        <a href="#reserve" class="btn btn-primary nav-mobile-cta"
+          >Join Early Access</a
+        >
+      </div>
+    </nav>
+
+    <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+    <section class="hero hero--photo">
+      <div class="hero-bg">
+        <img
+          src="/images/hero-couple.jpg"
+          alt="Two people connecting on a first date"
+          class="photo__img"
+          loading="eager"
+          onerror="this.classList.add('photo__img--missing')"
+        />
+        <span class="hero-bg__hint">
+          <span class="photo__icon" aria-hidden="true">📷</span>
+          <code>/images/hero-couple.jpg</code>
+          <span>Drop background photo · 1920 × 1200</span>
+        </span>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-panel">
+          <div class="hero-tag">EchoSim · Now in Beta</div>
+          <h1 class="hero-headline">
+            Let your Echo<br />
+            <em>go on the first date.</em>
+          </h1>
+          <p class="hero-sub">
+            Echo is your digital twin — trained on your personality, your vibe,
+            your standards. It goes on dates for you, surfaces real chemistry,
+            and only calls you in when the spark is worth your time.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── MISSION TEASER ───────────────────────────────────────────────────── -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="teaser-head">
-        <div>
-          <h2 class="section-title">Highlights</h2>
-        </div>
-      </div>
-      <div class="mission-grid">
-        <div class="soul-card reveal">
-          <span class="soul-icon" aria-hidden="true">🧬</span>
-          <h3><em>Preview Chemistry</em> Before Meeting</h3>
-          <p>Your Echo dates theirs first. Only matches that survive the simulation reach your real life.</p>
-        </div>
-        <div class="soul-card reveal">
-          <span class="soul-icon" aria-hidden="true">💥</span>
-          <h3><em>Skip Small Talk</em> and "Hey"s</h3>
-          <p>Your Echo runs full simulated dates on your behalf. Save your emotional energy for genuine connections.</p>
-        </div>
-        <div class="soul-card reveal">
-          <span class="soul-icon" aria-hidden="true">⏳</span>
-          <h3><em>Filter Matches</em> While Offline</h3>
-          <p>Stop texting all day. Your Echo quietly evaluates candidates and runs simulations in the background.</p>
-        </div>
-        <div class="soul-card reveal">
-          <span class="soul-icon" aria-hidden="true">🎭</span>
-          <h3><em>Reveal Character</em> Under Pressure</h3>
-          <p>Profiles can be faked; reactions can't. Unpredictable scenarios reveal true character before you invest
-            feelings.</p>
-        </div>
-        <div class="soul-card reveal">
-          <span class="soul-icon" aria-hidden="true">🦋</span>
-          <h3><em>Rekindle Romance</em> for Couples</h3>
-          <p>Bring your partner in for shared simulated adventures. Escape routine, laugh together, and bring back the
-            butterflies.</p>
-        </div>
-        <div class="soul-card reveal">
-          <span class="soul-icon" aria-hidden="true">🐺</span>
-          <h3><em>Experience Devotion</em> from Virtual Character</h3>
-          <p>Meet our Wild Echoes—optional virtual companions offering total presence. Fully transparent, always by your
-            side.</p>
-        </div>
-      </div>
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="/mission/" class="btn btn-ghost">Read all 6 highlights in depth →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS TEASER ──────────────────────────────────────────────── -->
-  <section class="section">
-    <div class="container">
-      <div class="teaser-head">
-        <div>
-          <p class="section-eyebrow">How It Works</p>
-          <h2 class="section-title">Four steps to<br /><em>meaningful connection.</em></h2>
-        </div>
-      </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-number">01</div>
-          <div class="step-content">
-            <h3>Build your Echo</h3>
-            <p>Answer a set of deep questions and fine-tune your settings to teach Echo exactly how you think and feel.
+    <!-- ── EDITORIAL · Why it matters (photo + text) ────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="editorial editorial--split-mobile reveal">
+          <div class="editorial__media">
+            <!-- 使用 .photo--editorial-life 渲染 16:9 比例图片 -->
+            <figure class="photo photo--editorial-life">
+              <img
+                src="/images/editorial-life.jpg"
+                alt="Living life instead of swiping"
+                class="photo__img"
+                loading="lazy"
+                onerror="this.classList.add('photo__img--missing')"
+              />
+              <figcaption class="photo__hint">
+                <span class="photo__icon" aria-hidden="true">📷</span>
+                <code>/images/editorial-life.jpg</code>
+                <span>Drop photo · 1792 × 1008</span>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="editorial__text">
+            <p class="editorial__eyebrow">Why EchoSim</p>
+            <h2 class="editorial__title">
+              More than dating. <em>It's a movie starring you.</em>
+            </h2>
+            <p class="editorial__body">
+              Take the pressure off the search and enjoy the journey. Let your
+              digital twin experience fascinating stories and unexpected
+              encounters for you to look back on. It's like watching a great
+              movie — except this time, the protagonist is you.
             </p>
           </div>
         </div>
-        <div class="step-connector"></div>
-        <div class="step reveal">
-          <div class="step-number">02</div>
-          <div class="step-content">
-            <h3>Find someone intriguing</h3>
-            <p>Match with others just like regular dating apps.</p>
-          </div>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step reveal">
-          <div class="step-number">03</div>
-          <div class="step-content">
-            <h3>Send your Echo on a first date</h3>
-            <p>It runs fully simulated dates in the background — real conversation, real chemistry.</p>
-          </div>
-        </div>
-        <div class="step-connector"></div>
-        <div class="step reveal">
-          <div class="step-number">04</div>
-          <div class="step-content">
-            <h3>Review, simulate, or chat</h3>
-            <p>Read the transcript. Start a real chat, run more simulations, and only meet in person
-              when you're completely ready.</p>
-          </div>
-        </div>
       </div>
-      <div style="text-align: center; margin-top: 3rem;">
-        <a href="/how-it-works/" class="btn btn-ghost">See the full journey →</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── EDITORIAL · Meet when it's real (photo + text, flipped) ──────────── -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="editorial editorial--flip editorial--split-mobile reveal">
-        <div class="editorial__media">
-          <figure class="photo">
-            <img src="/images/editorial-meet.jpg" alt="A genuine first meeting in person" class="photo__img"
-              loading="lazy" onerror="this.classList.add('photo__img--missing')" />
-            <figcaption class="photo__hint">
-              <span class="photo__icon" aria-hidden="true">📷</span>
-              <code>/images/editorial-meet.jpg</code>
-              <span>Drop photo · 1000 × 800</span>
-            </figcaption>
-          </figure>
+    <!-- ── MISSION TEASER ───────────────────────────────────────────────────── -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="teaser-head">
+          <div>
+            <h2 class="section-title">Highlights</h2>
+          </div>
         </div>
-        <div class="editorial__text">
-          <p class="editorial__eyebrow">The payoff</p>
-          <h2 class="editorial__title">Meet in person only when the spark is <em>already real.</em></h2>
-          <p class="editorial__body">
-            No more first dates that fizzle in the first five minutes. By the time you say yes to meeting,
-            your Echoes have already created beautiful memories.
-            You walk in knowing it's worth your time — and theirs.
+        <div class="mission-grid">
+          <div class="soul-card reveal">
+            <span class="soul-icon" aria-hidden="true">🧬</span>
+            <h3><em>Preview Chemistry</em> Before Meeting</h3>
+            <p>
+              Your Echo dates theirs first. Only matches that survive the
+              simulation reach your real life.
+            </p>
+          </div>
+          <div class="soul-card reveal">
+            <span class="soul-icon" aria-hidden="true">💥</span>
+            <h3><em>Skip Small Talk</em> and "Hey"s</h3>
+            <p>
+              Your Echo runs full simulated dates on your behalf. Save your
+              emotional energy for genuine connections.
+            </p>
+          </div>
+          <div class="soul-card reveal">
+            <span class="soul-icon" aria-hidden="true">⏳</span>
+            <h3><em>Filter Matches</em> While Offline</h3>
+            <p>
+              Stop texting all day. Your Echo quietly evaluates candidates and
+              runs simulations in the background.
+            </p>
+          </div>
+          <div class="soul-card reveal">
+            <span class="soul-icon" aria-hidden="true">🎭</span>
+            <h3><em>Reveal Character</em> Under Pressure</h3>
+            <p>
+              Profiles can be faked; reactions can't. Unpredictable scenarios
+              reveal true character before you invest feelings.
+            </p>
+          </div>
+          <div class="soul-card reveal">
+            <span class="soul-icon" aria-hidden="true">🦋</span>
+            <h3><em>Rekindle Romance</em> for Couples</h3>
+            <p>
+              Bring your partner in for shared simulated adventures. Escape
+              routine, laugh together, and bring back the butterflies.
+            </p>
+          </div>
+          <div class="soul-card reveal">
+            <span class="soul-icon" aria-hidden="true">🐺</span>
+            <h3><em>Experience Devotion</em> from Virtual Character</h3>
+            <p>
+              Meet our Wild Echoes—optional virtual companions offering total
+              presence. Fully transparent, always by your side.
+            </p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem">
+          <a href="/mission/" class="btn btn-ghost"
+            >Read all 6 highlights in depth →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS TEASER ──────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="teaser-head">
+          <div>
+            <p class="section-eyebrow">How It Works</p>
+            <h2 class="section-title">
+              Four steps to<br /><em>meaningful connection.</em>
+            </h2>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3>Build your Echo</h3>
+              <p>
+                Answer a set of deep questions and fine-tune your settings to
+                teach Echo exactly how you think and feel.
+              </p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step reveal">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3>Find someone intriguing</h3>
+              <p>Match with others just like regular dating apps.</p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step reveal">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3>Send your Echo on a first date</h3>
+              <p>
+                It runs fully simulated dates in the background — real
+                conversation, real chemistry.
+              </p>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step reveal">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3>Review, simulate, or chat</h3>
+              <p>
+                Read the transcript. Start a real chat, run more simulations,
+                and only meet in person when you're completely ready.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem">
+          <a href="/how-it-works/" class="btn btn-ghost"
+            >See the full journey →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EDITORIAL · Meet when it's real (photo + text, flipped) ──────────── -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="editorial editorial--flip editorial--split-mobile reveal">
+          <div class="editorial__media">
+            <figure class="photo">
+              <img
+                src="/images/editorial-meet.jpg"
+                alt="A genuine first meeting in person"
+                class="photo__img"
+                loading="lazy"
+                onerror="this.classList.add('photo__img--missing')"
+              />
+              <figcaption class="photo__hint">
+                <span class="photo__icon" aria-hidden="true">📷</span>
+                <code>/images/editorial-meet.jpg</code>
+                <span>Drop photo · 1000 × 800</span>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="editorial__text">
+            <p class="editorial__eyebrow">The payoff</p>
+            <h2 class="editorial__title">
+              Meet in person only when the spark is <em>already real.</em>
+            </h2>
+            <p class="editorial__body">
+              No more first dates that fizzle in the first five minutes. By the
+              time you say yes to meeting, your Echoes have already created
+              beautiful memories. You walk in knowing it's worth your time — and
+              theirs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESERVE · Waitlist ───────────────────────────────────────────────── -->
+    <section id="reserve" class="reserve-section">
+      <div class="container container--narrow">
+        <div class="reserve-inner">
+          <div class="reserve-tag">Early Access</div>
+          <h2 class="reserve-title">
+            Be among the first<br /><em>to meet your Echo.</em>
+          </h2>
+          <p class="reserve-sub">
+            Join early access today and we'll reach out when a spot opens — no
+            spam, ever.
           </p>
+          <form id="earlyAccessForm" class="reserve-form-extended">
+            <input
+              type="email"
+              id="earlyAccessEmail"
+              name="entry.147168178"
+              placeholder="Enter your email address"
+              required
+              class="reserve-input"
+            />
+            <div class="reserve-row">
+              <select name="entry.platform" required class="reserve-input">
+                <option value="" disabled selected>Platform</option>
+                <option value="iOS">iOS</option>
+                <option value="Android">Android</option>
+              </select>
+              <!-- Please update the name attributes below with the actual entry IDs from Google Forms once added -->
+              <input
+                type="text"
+                name="entry.city"
+                placeholder="City"
+                required
+                class="reserve-input"
+              />
+            </div>
+            <div class="reserve-row">
+              <input
+                type="text"
+                name="entry.state"
+                placeholder="State/Province"
+                class="reserve-input"
+              />
+              <input
+                type="text"
+                name="entry.country"
+                placeholder="Country"
+                required
+                class="reserve-input"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-gold reserve-submit"
+              style="margin-top: 0.5rem"
+            >
+              Join Early Access
+            </button>
+          </form>
+          <div
+            id="earlyAccessSuccess"
+            style="
+              display: none;
+              color: var(--primary);
+              margin-top: 1rem;
+              text-align: center;
+              font-size: 0.95rem;
+              font-weight: 500;
+            "
+          >
+            Thanks! We'll be in touch soon.
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── RESERVE · Waitlist ───────────────────────────────────────────────── -->
-  <section class="reserve-section">
-    <div class="container container--narrow">
-      <div class="reserve-inner">
-        <div class="reserve-tag">Early Access</div>
-        <h2 class="reserve-title">Be among the first<br /><em>to meet your Echo.</em></h2>
-        <p class="reserve-sub">
-          Join early access today and we'll reach out when a spot opens — no spam, ever.
-        </p>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/viewform?usp=sharing&ouid=113246496544558997006"
-            target="_blank" rel="noopener noreferrer" class="btn btn-gold">Join Early Access</a>
+    <!-- FOOTER -->
+    <footer class="footer-v2">
+      <div class="container footer-v2-inner">
+        <span class="logo logo--sm"
+          ><img
+            src="/logo.png"
+            alt=""
+            class="logo-img logo-img--sm"
+          />EchoSim</span
+        >
+        <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+        <div class="footer-links-v2">
+          <a href="mailto:support@echosim.ai">Contact Us</a>
+          <a href="/privacy.en.html">Privacy Policy</a>
+          <a href="/terms.en.html">Terms of Service</a>
         </div>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer class="footer-v2">
-    <div class="container footer-v2-inner">
-      <span class="logo logo--sm"><img src="/logo.png" alt="" class="logo-img logo-img--sm" />EchoSim</span>
-      <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
-      <div class="footer-links-v2">
-        <a href="mailto:support@echosim.ai">Contact Us</a>
-        <a href="/privacy.en.html">Privacy Policy</a>
-        <a href="/terms.en.html">Terms of Service</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/site.js" defer></script>
-</body>
-
+    <script src="/site.js" defer></script>
+  </body>
 </html>
