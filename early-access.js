@@ -1,6 +1,7 @@
 /**
  * @file early-access.js
- * @description EchoSim 早期访问表单原生 Web Component，包含国家-州/省-城市三级级联过滤器及超时自动降级容错机制。
+ * @description EchoSim 早期访问表单 Web Component，使用文本输入框与自定义等宽下拉列表。
+ * 支持 Autofill，强制用户必须从下拉选项中选择，否则报错并拒绝提交表单。
  */
 
 class EarlyAccessForm extends HTMLElement {
@@ -9,124 +10,111 @@ class EarlyAccessForm extends HTMLElement {
     this.countries = [];
     this.states = [];
     this.cities = [];
-    this.loading = { countries: true, states: false, cities: false };
     this.selected = { country: '', state: '', city: '', email: '', platform: '' };
-    this.fallbackMode = false;
     this.isSubmitting = false;
   }
 
-  /**
-   * @description 组件加载到 DOM 时触发，开始初始化渲染并异步加载国家数据。
-   */
   connectedCallback() {
     this.render();
     this.fetchCountries();
+    this.bindClickOutside();
   }
 
-  /**
-   * @description 激活降级模式，当地理 API 失败或超时，自动切换到普通文本输入框。
-   */
-  triggerFallback() {
-    if (this.fallbackMode) return;
-    console.warn('CountriesNow API unavailable. Switching to text input fallback.');
-    this.fallbackMode = true;
-    this.loading = { countries: false, states: false, cities: false };
-    this.render();
+  bindClickOutside() {
+    document.addEventListener('click', (e) => {
+      if (!this.contains(e.target)) this.closeAllDropdowns();
+    });
   }
 
-  /**
-   * @description 异步获取全球所有国家列表。
-   */
+  closeAllDropdowns() {
+    this.querySelectorAll('.custom-dropdown').forEach(d => d.style.display = 'none');
+  }
+
   async fetchCountries() {
     try {
       this.countries = await window.EarlyAccessAPI.getCountries();
-      this.loading.countries = false;
-      this.render();
     } catch (err) {
-      this.triggerFallback();
+      console.warn('API error fetching countries:', err);
     }
   }
 
-  /**
-   * @description 当选择国家后，获取其对应的省份/州列表。
-   * @param {string} country 国家名称
-   */
   async fetchStates(country) {
-    this.loading.states = true;
     this.states = [];
     this.cities = [];
-    this.selected.state = '';
-    this.selected.city = '';
-    this.render();
-
     try {
       this.states = await window.EarlyAccessAPI.getStates(country);
-      this.loading.states = false;
-      if (this.states.length === 0) {
-        await this.fetchCitiesOfCountry(country);
-      } else {
-        this.render();
-      }
+      if (this.states.length === 0) await this.fetchCitiesOfCountry(country);
     } catch (err) {
       try {
         await this.fetchCitiesOfCountry(country);
-      } catch {
-        this.triggerFallback();
+      } catch (e) {
+        console.warn('API error fetching states:', e);
       }
     }
   }
 
-  /**
-   * @description 当选择省份/州后，获取其对应的城市列表。
-   * @param {string} country 国家名称
-   * @param {string} state 省份/州名称
-   */
   async fetchCities(country, state) {
-    this.loading.cities = true;
     this.cities = [];
-    this.selected.city = '';
-    this.render();
-
     try {
       this.cities = await window.EarlyAccessAPI.getCities(country, state);
-      this.loading.cities = false;
-      this.render();
     } catch (err) {
-      this.triggerFallback();
+      console.warn('API error fetching cities:', err);
     }
   }
 
-  /**
-   * @description 兜底方法：对于没有省份/州的国家，直接获取该国家所有城市列表。
-   * @param {string} country 国家名称
-   */
   async fetchCitiesOfCountry(country) {
-    this.loading.states = false;
-    this.loading.cities = true;
-    this.render();
-
+    this.cities = [];
     try {
       this.cities = await window.EarlyAccessAPI.getCitiesOfCountry(country);
-      this.loading.cities = false;
-      this.render();
     } catch (err) {
-      this.triggerFallback();
+      console.warn('API error fetching country cities:', err);
     }
   }
 
-  /**
-   * @description 处理等待名单表单的提交请求，集成 Google 表单。
-   * @param {Event} e 表单提交事件
-   */
   async handleSubmit(e) {
     e.preventDefault();
     if (this.isSubmitting) return;
 
+    const formEl = this.querySelector('form');
+    const cInput = this.querySelector('#earlyAccessCountry');
+    const sInput = this.querySelector('#earlyAccessState');
+    const yInput = this.querySelector('#earlyAccessCity');
+
+    cInput.setCustomValidity('');
+    sInput.setCustomValidity('');
+    yInput.setCustomValidity('');
+
+    if (this.countries.length > 0) {
+      const val = cInput.value.trim().toLowerCase();
+      if (!this.countries.some(c => c.toLowerCase() === val)) {
+        cInput.setCustomValidity('Please select a Country from the suggested options list.');
+        formEl.reportValidity();
+        return;
+      }
+    }
+    if (this.states.length > 0) {
+      const val = sInput.value.trim().toLowerCase();
+      if (!this.states.some(s => s.toLowerCase() === val)) {
+        sInput.setCustomValidity('Please select a State/Province from the suggested options list.');
+        formEl.reportValidity();
+        return;
+      }
+    }
+    if (this.cities.length > 0) {
+      const val = yInput.value.trim().toLowerCase();
+      if (!this.cities.some(c => c.toLowerCase() === val)) {
+        yInput.setCustomValidity('Please select a City from the suggested options list.');
+        formEl.reportValidity();
+        return;
+      }
+    }
+
+    // 先构建 FormData，此时输入框尚未被禁用，值会完整包含在内
+    const formData = new FormData(formEl);
+
     this.isSubmitting = true;
     this.render();
 
-    const formEl = this.querySelector('form');
-    const formData = new FormData(formEl);
     const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdRRVGnVEO8P5wiENS8EgS3v5igh6l9ZzujiDoKdrUrIt7iqg/formResponse';
 
     try {
@@ -142,9 +130,61 @@ class EarlyAccessForm extends HTMLElement {
     }
   }
 
-  /**
-   * @description 重新渲染组件的 HTML DOM 结构。
-   */
+  setupInput(inputId, dropdownId, listKey, nextFetch) {
+    const input = this.querySelector(`#${inputId}`);
+    const dropdown = this.querySelector(`#${dropdownId}`);
+    if (!input || !dropdown) return;
+
+    const filterList = () => {
+      const list = this[listKey];
+      const val = input.value;
+      const filtered = list.filter(item => item.toLowerCase().includes(val.toLowerCase()));
+      dropdown.innerHTML = filtered.map(item => `<div class="dropdown-item" data-value="${item}">${item}</div>`).join('');
+      dropdown.style.display = filtered.length ? 'block' : 'none';
+    };
+
+    input.addEventListener('focus', () => {
+      this.closeAllDropdowns();
+      filterList();
+    });
+
+    input.addEventListener('input', (e) => {
+      input.setCustomValidity('');
+      this.selected[listKey.replace('ies', 'y').replace('s', '')] = e.target.value;
+      filterList();
+    });
+
+    dropdown.addEventListener('click', (e) => {
+      const item = e.target.closest('.dropdown-item');
+      if (item) {
+        const val = item.getAttribute('data-value');
+        input.value = val;
+        this.selected[listKey.replace('ies', 'y').replace('s', '')] = val;
+        dropdown.style.display = 'none';
+        input.setCustomValidity('');
+        if (nextFetch) nextFetch(val);
+      }
+    });
+  }
+
+  bindEvents() {
+    this.setupInput('earlyAccessCountry', 'country-dropdown', 'countries', (val) => {
+      this.fetchStates(val);
+      const stateInput = this.querySelector('#earlyAccessState');
+      const cityInput = this.querySelector('#earlyAccessCity');
+      if (stateInput) stateInput.value = '';
+      if (cityInput) cityInput.value = '';
+    });
+
+    this.setupInput('earlyAccessState', 'state-dropdown', 'states', (val) => {
+      this.fetchCities(this.selected.country, val);
+      const cityInput = this.querySelector('#earlyAccessCity');
+      if (cityInput) cityInput.value = '';
+    });
+
+    this.setupInput('earlyAccessCity', 'city-dropdown', 'cities');
+  }
+
   render() {
     const emailInput = this.querySelector('#earlyAccessEmail');
     const platformInput = this.querySelector('select[name="entry.147168178"]');
@@ -155,56 +195,67 @@ class EarlyAccessForm extends HTMLElement {
     const btnDisabled = this.isSubmitting ? 'disabled' : '';
 
     this.innerHTML = `
+      <style>
+        .reserve-field-wrap { position: relative; width: 100%; box-sizing: border-box; }
+        .reserve-field-wrap .reserve-input { width: 100%; box-sizing: border-box; }
+        .custom-dropdown {
+          position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+          max-height: 200px; overflow-y: auto; background: var(--bg-card);
+          border: 1px solid var(--outline); border-radius: var(--radius);
+          z-index: 1000; box-shadow: 0 10px 30px rgba(26,28,27,0.12); display: none;
+          box-sizing: border-box;
+        }
+        html[data-theme="dark"] .custom-dropdown {
+          background: #1e1324; border-color: rgba(255,255,255,0.12);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+        .dropdown-item {
+          padding: 0.65rem 1.25rem; font-size: 0.9rem; color: var(--text);
+          cursor: pointer; text-align: left; transition: background 0.15s, color 0.15s;
+        }
+        .dropdown-item:hover { background: rgba(142,75,110,0.1); color: var(--primary); }
+        html[data-theme="dark"] .dropdown-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+      </style>
       <form class="reserve-form-extended">
         <input
-          type="email"
-          id="earlyAccessEmail"
-          name="entry.329827072"
-          placeholder="Enter your email address"
-          required
-          class="reserve-input"
-          value="${this.selected.email}"
-          ${this.isSubmitting ? 'disabled' : ''}
+          type="email" id="earlyAccessEmail" name="entry.329827072"
+          placeholder="Enter your email address" required class="reserve-input"
+          value="${this.selected.email}" autocomplete="email" ${this.isSubmitting ? 'disabled' : ''}
         />
-        <div class="reserve-row">
-          <select name="entry.147168178" required class="reserve-input" ${this.isSubmitting ? 'disabled' : ''}>
-            <option value="" disabled ${!this.selected.platform ? 'selected' : ''}>Platform</option>
-            <option value="iOS" ${this.selected.platform === 'iOS' ? 'selected' : ''}>iOS</option>
-            <option value="Android" ${this.selected.platform === 'Android' ? 'selected' : ''}>Android</option>
-          </select>
 
-          ${this.fallbackMode ? `
-            <input type="text" name="entry.1997565566" placeholder="Country" required class="reserve-input" ${this.isSubmitting ? 'disabled' : ''} />
-          ` : `
-            <select name="entry.1997565566" required class="reserve-input" ${this.isSubmitting || this.loading.countries ? 'disabled' : ''}>
-              <option value="" disabled ${!this.selected.country ? 'selected' : ''}>
-                ${this.loading.countries ? 'Loading countries...' : 'Country'}
-              </option>
-              ${this.countries.map(c => `<option value="${c}" ${this.selected.country === c ? 'selected' : ''}>${c}</option>`).join('')}
-            </select>
-          `}
+        <select name="entry.147168178" required class="reserve-input" ${this.isSubmitting ? 'disabled' : ''}>
+          <option value="" disabled ${!this.selected.platform ? 'selected' : ''}>Platform</option>
+          <option value="iOS" ${this.selected.platform === 'iOS' ? 'selected' : ''}>iOS</option>
+          <option value="Android" ${this.selected.platform === 'Android' ? 'selected' : ''}>Android</option>
+        </select>
+
+        <div class="reserve-field-wrap">
+          <input
+            type="text" id="earlyAccessCountry" name="entry.1997565566"
+            placeholder="Country" autocomplete="country-name" required class="reserve-input"
+            value="${this.selected.country}" ${this.isSubmitting ? 'disabled' : ''}
+          />
+          <div id="country-dropdown" class="custom-dropdown"></div>
         </div>
 
-        <div class="reserve-row">
-          ${this.fallbackMode ? `
-            <input type="text" name="entry.1519677256" placeholder="State/Province" required class="reserve-input" ${this.isSubmitting ? 'disabled' : ''} />
-            <input type="text" name="entry.2053319293" placeholder="City" required class="reserve-input" ${this.isSubmitting ? 'disabled' : ''} />
-          ` : `
-            <select name="entry.1519677256" required class="reserve-input" ${this.isSubmitting || this.loading.states || !this.selected.country || this.states.length === 0 ? 'disabled' : ''}>
-              <option value="" disabled ${!this.selected.state ? 'selected' : ''}>
-                ${this.loading.states ? 'Loading states...' : (this.selected.country && this.states.length === 0 ? 'N/A' : 'State/Province')}
-              </option>
-              ${this.states.map(s => `<option value="${s}" ${this.selected.state === s ? 'selected' : ''}>${s}</option>`).join('')}
-            </select>
-
-            <select name="entry.2053319293" required class="reserve-input" ${this.isSubmitting || this.loading.cities || (!this.selected.state && this.states.length > 0) || !this.selected.country ? 'disabled' : ''}>
-              <option value="" disabled ${!this.selected.city ? 'selected' : ''}>
-                ${this.loading.cities ? 'Loading cities...' : 'City'}
-              </option>
-              ${this.cities.map(c => `<option value="${c}" ${this.selected.city === c ? 'selected' : ''}>${c}</option>`).join('')}
-            </select>
-          `}
+        <div class="reserve-field-wrap">
+          <input
+            type="text" id="earlyAccessState" name="entry.1519677256"
+            placeholder="State/Province" autocomplete="address-level1" required class="reserve-input"
+            value="${this.selected.state}" ${this.isSubmitting ? 'disabled' : ''}
+          />
+          <div id="state-dropdown" class="custom-dropdown"></div>
         </div>
+
+        <div class="reserve-field-wrap">
+          <input
+            type="text" id="earlyAccessCity" name="entry.2053319293"
+            placeholder="City" autocomplete="address-level2" required class="reserve-input"
+            value="${this.selected.city}" ${this.isSubmitting ? 'disabled' : ''}
+          />
+          <div id="city-dropdown" class="custom-dropdown"></div>
+        </div>
+
         <button type="submit" class="btn btn-gold reserve-submit" style="margin-top: 0.5rem" ${btnDisabled}>${btnText}</button>
       </form>
       <div id="earlyAccessSuccess" style="display: none; color: var(--primary); margin-top: 1rem; text-align: center; font-size: 0.95rem; font-weight: 500;">
@@ -214,29 +265,7 @@ class EarlyAccessForm extends HTMLElement {
 
     const formEl = this.querySelector('form');
     if (formEl) formEl.addEventListener('submit', (e) => this.handleSubmit(e));
-
-    const countrySelect = this.querySelector('select[name="entry.1997565566"]');
-    if (countrySelect) {
-      countrySelect.addEventListener('change', (e) => {
-        this.selected.country = e.target.value;
-        this.fetchStates(this.selected.country);
-      });
-    }
-
-    const stateSelect = this.querySelector('select[name="entry.1519677256"]');
-    if (stateSelect) {
-      stateSelect.addEventListener('change', (e) => {
-        this.selected.state = e.target.value;
-        this.fetchCities(this.selected.country, this.selected.state);
-      });
-    }
-
-    const citySelect = this.querySelector('select[name="entry.2053319293"]');
-    if (citySelect) {
-      citySelect.addEventListener('change', (e) => {
-        this.selected.city = e.target.value;
-      });
-    }
+    this.bindEvents();
   }
 }
 
