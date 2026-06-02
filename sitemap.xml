@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://echosim.ai/</loc>
     <lastmod>2026-06-01</lastmod>
@@ -71,5 +72,47 @@
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://echosim.ai/privacy.en.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://echosim.ai/privacy.en.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://echosim.ai/privacy.zh.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://echosim.ai/privacy.en.html" />
+  </url>
+  <url>
+    <loc>https://echosim.ai/privacy.zh.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://echosim.ai/privacy.en.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://echosim.ai/privacy.zh.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://echosim.ai/privacy.en.html" />
+  </url>
+  <url>
+    <loc>https://echosim.ai/terms.en.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://echosim.ai/terms.en.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://echosim.ai/terms.zh.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://echosim.ai/terms.en.html" />
+  </url>
+  <url>
+    <loc>https://echosim.ai/terms.zh.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://echosim.ai/terms.en.html" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://echosim.ai/terms.zh.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://echosim.ai/terms.en.html" />
+  </url>
+  <url>
+    <loc>https://echosim.ai/dmca.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
