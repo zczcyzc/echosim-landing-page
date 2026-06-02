@@ -1,0 +1,218 @@
+<!doctype html>
+<!-- 文件用途: EchoSim 帮助中心文章 - 如何训练与微调你的 AI 分身 (Echo) -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Fine-Tune Your Echo — EchoSim Help</title>
+    <meta
+      name="description"
+      content="Teach your AI Echo your voice, boundaries, humor, and relationship style through four guided areas: Baseline Questions, Opinions & Values, Guided Discovery, and Response Pacing."
+    />
+    <link rel="canonical" href="https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="EchoSim" />
+    <meta property="og:title" content="How to Fine-Tune Your Echo — EchoSim Help" />
+    <meta property="og:description" content="Teach your AI twin your voice, boundaries, humor, and relationship style for accurate background pre-simulations." />
+    <meta property="og:url" content="https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html" />
+    <meta property="og:image" content="https://echosim.ai/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How to Fine-Tune Your Echo — EchoSim Help" />
+    <meta name="twitter:description" content="Teach your AI twin your voice, boundaries, humor, and relationship style for accurate background pre-simulations." />
+    <meta name="twitter:image" content="https://echosim.ai/logo.png" />
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      // 避免暗黑/明亮主题切换时的样式闪烁 (FOUC)
+      const savedTheme = localStorage.getItem("echosim-theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+
+    <!-- Article + Breadcrumb + HowTo structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "How to Fine-Tune Your Echo",
+      "description": "Teach your AI Echo your voice, boundaries, humor, and relationship style through four guided areas: Baseline Questions, Opinions & Values, Guided Discovery, and Response Pacing.",
+      "inLanguage": "en",
+      "datePublished": "2026-05-31",
+      "dateModified": "2026-06-01",
+      "author": { "@type": "Organization", "name": "EchoSim Team" },
+      "publisher": { "@type": "Organization", "name": "EchoSim", "logo": { "@type": "ImageObject", "url": "https://echosim.ai/logo.png" } },
+      "mainEntityOfPage": "https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://echosim.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Help Center", "item": "https://echosim.ai/help/" },
+        { "@type": "ListItem", "position": 3, "name": "How to Fine-Tune Your Echo", "item": "https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to fine-tune your Echo",
+      "description": "Customize your AI twin through four guided areas so it represents your genuine self in background dating simulations.",
+      "step": [
+        { "@type": "HowToStep", "name": "Set your baseline", "text": "Answer quick Baseline Questions that capture your natural texting vibe and greetings.", "url": "https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html#baseline" },
+        { "@type": "HowToStep", "name": "Define opinions & values", "text": "Map your beliefs, lifestyle, relationship expectations, and core dealbreakers so your Echo has real depth.", "url": "https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html#values" },
+        { "@type": "HowToStep", "name": "Complete guided discovery", "text": "Use the conversational onboarding chat to articulate preferences and boundaries without long forms.", "url": "https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html#discovery" },
+        { "@type": "HowToStep", "name": "Adjust response pacing", "text": "Set your Echo's conversational tempo and natural delays to mirror your real texting habits.", "url": "https://echosim.ai/help/articles/how-to-fine-tune-your-echo.html#pacing" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner container">
+        <a href="/" class="logo"
+          ><img src="/logo.png" alt="EchoSim logo" class="logo-img" />EchoSim</a
+        >
+        <div class="nav-links">
+          <a href="/highlights/" class="nav-link">Highlights</a>
+          <a href="/how-it-works/" class="nav-link">How It Works</a>
+          <a href="/help/" class="nav-link is-active">Help</a>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+          <a href="/#reserve" class="btn btn-primary btn-sm"
+            >Join Early Access</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- BREADCRUMBS & HERO -->
+    <header class="page-hero" style="padding-bottom: 1.5rem; text-align: left;">
+      <div class="container container--narrow" style="max-width: 700px; margin: 0 auto;">
+        <div style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-muted);">
+          <a href="/help/" style="color: var(--text-muted); text-decoration: none;">Help Center</a> &gt; 
+          <span style="color: var(--text);">Managing My Echo</span>
+        </div>
+        <h1 class="section-title" style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 1rem;">
+          How to Fine-Tune <em>Your Echo</em>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Learn how to teach your AI twin your voice, boundaries, humor, and relationship style for accurate background pre-simulations.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.75rem 0 0 0;">By the EchoSim Team · Last updated June 1, 2026</p>
+      </div>
+    </header>
+
+    <!-- ARTICLE BODY -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container container--narrow" style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem;">
+        
+        <div style="background: var(--bg-alt); border-left: 3px solid var(--primary); padding: 1rem 1.25rem; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.65; color: var(--text);">
+          <strong>In short:</strong> You fine-tune your Echo through four guided areas — Baseline Questions (your texting voice), Opinions &amp; Values (your beliefs and dealbreakers), Guided Discovery (a conversational onboarding chat), and Response Pacing (your reply tempo) — so it represents you accurately in background simulated dates.
+        </div>
+
+        <div style="color: var(--text); font-size: 0.95rem; line-height: 1.7; display: flex; flex-direction: column; gap: 1.25rem;">
+          <p>
+            Your Echo is built to represent your genuine self in background dating simulations. To ensure your Echo communicates with your unique style, values, and rhythm while keeping your core privacy safe, you customize your twin's settings through four simple, guided areas: <strong>Baseline Questions</strong>, <strong>Opinions &amp; Values</strong>, <strong>Guided Discovery</strong>, and <strong>Response Pacing</strong>.
+          </p>
+
+          <h2 id="baseline" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">1. Setting Your Baseline</h2>
+          <p>
+            To capture how you naturally express yourself, you begin by answering a few quick, interactive <strong>Baseline Questions</strong>.
+          </p>
+          <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Conversational Style</strong>: These questions capture your natural texting vibe—sarcasm levels, punctuation styles, sentence structures, and favorite emoji categories.</li>
+            <li><strong>Natural Greetings</strong>: Teach your Echo whether you open conversations with a warm greeting, a direct question, or a playful observation.</li>
+          </ul>
+
+          <h2 id="values" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">2. Opinions &amp; Values</h2>
+          <p>
+            An Echo doesn't just chat; it represents your actual beliefs. Customizing your <strong>Opinions &amp; Values</strong> provides your Echo with real depth.
+          </p>
+          <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Belief &amp; Lifestyle Mapping</strong>: Share your perspectives on career goals, relationship expectations, lifestyle habits, and core dealbreakers.</li>
+            <li><strong>Substance-First Matching</strong>: By teaching your Echo what matters most to you, you ensure it skips empty small talk and focuses on real compatibility factors in all simulated dates.</li>
+          </ul>
+
+          <h2 id="discovery" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">3. Guided Discovery</h2>
+          <p>
+            We don't believe in long, exhausting forms. EchoSim uses an intuitive, conversational <strong>Guided Discovery</strong> chat during onboarding.
+          </p>
+          <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Intuitive Onboarding</strong>: The setup guide acts as an active listener, dynamically asking brief, friendly follow-up questions tailored to your previous answers.</li>
+            <li><strong>Effortless Expression</strong>: This interactive chat makes it easy to articulate your relationship preferences, emotional comfort zones, and boundaries without filling out spreadsheets.</li>
+          </ul>
+
+          <h2 id="pacing" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">4. Response Pacing</h2>
+          <p>
+            Real conversations have a natural rhythm and pacing. Under <strong>Response Pacing</strong>, you customize your Echo's conversational tempo to ensure absolute relational realism:
+          </p>
+          <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Conversational Tempo</strong>: Align how quickly or thoughtfully your Echo replies to matches during simulated conversations, mirroring your real-world texting habits.</li>
+            <li><strong>Natural Delays</strong>: The system applies dynamic response delays instead of instant, robotic replies, maintaining a completely organic messaging flow.</li>
+          </ul>
+        </div>
+
+        <!-- Related articles (internal linking for topical authority) -->
+        <div style="border-top: 1px solid var(--outline); padding-top: 1.5rem;">
+          <h2 style="font-family: var(--serif); font-weight: 600; font-size: 1.1rem; margin: 0 0 0.85rem 0; color: var(--text);">Related articles</h2>
+          <ul style="padding: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li><a href="/help/articles/photo-prompt-guidelines.html" style="color: var(--primary); text-decoration: none;">→ Photo &amp; Prompt Guidelines</a></li>
+            <li><a href="/help/articles/reading-your-match-reports.html" style="color: var(--primary); text-decoration: none;">→ Reading Your Match Reports</a></li>
+            <li><a href="/help/articles/questions-and-answers.html#managing-echo" style="color: var(--primary); text-decoration: none;">→ All questions on managing your Echo</a></li>
+          </ul>
+        </div>
+
+
+
+        <a href="/help/" style="font-family: var(--serif); color: var(--primary); text-decoration: none; font-weight: 600; align-self: flex-start;">← Back to Help Center</a>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-v2">
+      <div class="container footer-v2-inner">
+        <span class="logo logo--sm"
+          ><img
+            src="/logo.png"
+            alt="EchoSim logo"
+            class="logo-img logo-img--sm"
+          />EchoSim</span
+        >
+        <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+        <div class="footer-links-v2">
+          <a href="/highlights/">Highlights</a>
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/help/">Help</a>
+          <a
+            href="https://github.com/dating-psychology/Echo-Sim-Official-Specs"
+            target="_blank"
+            rel="noopener"
+            >Product Specs</a
+          >
+          <a href="/privacy.en.html">Privacy Policy</a>
+          <a href="/terms.en.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/site.js" defer></script>
+  </body>
+</html>

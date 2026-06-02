@@ -1,0 +1,209 @@
+<!doctype html>
+<!-- 文件用途: EchoSim 帮助中心文章 - 金币 (Coins) 与充值系统使用指南 -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding Coins — EchoSim Help</title>
+    <meta
+      name="description"
+      content="How EchoSim Coins work: tokens that power background date simulations. Every user gets a free daily allowance; purchased Coins never expire. Daily Expired Coins are spent first."
+    />
+    <link rel="canonical" href="https://echosim.ai/help/articles/understanding-coins.html" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="EchoSim" />
+    <meta property="og:title" content="Understanding Coins — EchoSim Help" />
+    <meta property="og:description" content="A guide to EchoSim's coin-based matching economy, simulation resets, and premium features." />
+    <meta property="og:url" content="https://echosim.ai/help/articles/understanding-coins.html" />
+    <meta property="og:image" content="https://echosim.ai/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Understanding Coins — EchoSim Help" />
+    <meta name="twitter:description" content="A guide to EchoSim's coin-based matching economy, simulation resets, and premium features." />
+    <meta name="twitter:image" content="https://echosim.ai/logo.png" />
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      // 避免暗黑/明亮主题切换时的样式闪烁 (FOUC)
+      const savedTheme = localStorage.getItem("echosim-theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+
+    <!-- Article + Breadcrumb structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Understanding Coins",
+      "description": "How EchoSim Coins work: tokens that power background date simulations, with a free daily allowance and never-expiring purchased Coins.",
+      "inLanguage": "en",
+      "datePublished": "2026-05-31",
+      "dateModified": "2026-06-01",
+      "author": { "@type": "Organization", "name": "EchoSim Team" },
+      "publisher": { "@type": "Organization", "name": "EchoSim", "logo": { "@type": "ImageObject", "url": "https://echosim.ai/logo.png" } },
+      "mainEntityOfPage": "https://echosim.ai/help/articles/understanding-coins.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://echosim.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Help Center", "item": "https://echosim.ai/help/" },
+        { "@type": "ListItem", "position": 3, "name": "Understanding Coins", "item": "https://echosim.ai/help/articles/understanding-coins.html" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner container">
+        <a href="/" class="logo"
+          ><img src="/logo.png" alt="EchoSim logo" class="logo-img" />EchoSim</a
+        >
+        <div class="nav-links">
+          <a href="/highlights/" class="nav-link">Highlights</a>
+          <a href="/how-it-works/" class="nav-link">How It Works</a>
+          <a href="/help/" class="nav-link is-active">Help</a>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+          <a href="/#reserve" class="btn btn-primary btn-sm"
+            >Join Early Access</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- BREADCRUMBS & HERO -->
+    <header class="page-hero" style="padding-bottom: 1.5rem; text-align: left;">
+      <div class="container container--narrow" style="max-width: 700px; margin: 0 auto;">
+        <div style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-muted);">
+          <a href="/help/" style="color: var(--text-muted); text-decoration: none;">Help Center</a> &gt; 
+          <span style="color: var(--text);">Coins &amp; Premium Systems</span>
+        </div>
+        <h1 class="section-title" style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 1rem;">
+          <em>Coins</em>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          A comprehensive guide to EchoSim's coin-based matching economy, simulation resets, and premium features.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.75rem 0 0 0;">By the EchoSim Team · Last updated June 1, 2026</p>
+      </div>
+    </header>
+
+    <!-- ARTICLE BODY -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container container--narrow" style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem;">
+        
+        <div style="background: var(--bg-alt); border-left: 3px solid var(--primary); padding: 1rem 1.25rem; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.65; color: var(--text);">
+          <strong>In short:</strong> Coins are EchoSim's in-app tokens that power your Echo's background date simulations. Every user gets a free daily allowance (Daily Expired Coins, spent first and reset every 24 hours); purchased Ordinary Coins never expire and are used only once your daily allowance runs out. Early access registrants get 500 free Coins.
+        </div>
+
+        <div style="color: var(--text); font-size: 0.95rem; line-height: 1.7; display: flex; flex-direction: column; gap: 1.25rem;">
+          <p>
+            To power background pre-simulations and prevent spam or low-effort match harvesting, EchoSim implements a local token economy powered by <strong>Coins</strong>.
+          </p>
+
+          <h2 id="usage" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">1. What are Coins used for?</h2>
+          <p>
+            Coins are used to fuel your Echo's AI compute resources for background sandboxed date simulations:
+          </p>
+          <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Initiating Simulations</strong>: When you match with another user, running the initial background simulated date consumes a small, standard amount of coins.</li>
+            <li><strong>Deeper Scenario Resets</strong>: If you want to stress-test compatibility under new conditions (e.g., a simulation exploring financial conflicts or moving in together), you can reset the sandbox with new scenarios by spending coins.</li>
+            <li><strong>Advanced Analytics</strong>: Unlocking deeper compatibility breakdowns or extended dialogue analyses uses coin triggers.</li>
+          </ul>
+
+          <h2 id="getting" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">2. How do I get Coins?</h2>
+          <p>
+            We believe dating shouldn't be a financial grind. You can acquire coins in multiple ways:
+          </p>
+          <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Daily Allowances</strong>: Every active EchoSim user receives a set amount of free Coins every single day.</li>
+            <li><strong>In-App Purchases (IAP)</strong>: If you are eager to run dozens of background simulations in a single day, you can buy coin bundles directly through Apple or Google billing.</li>
+            <li><strong>Early Access Boost</strong>: During our beta and early access phase, all registrants receive a massive starting bundle of 500 free Coins.</li>
+          </ul>
+
+          <h2 id="coin-types" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">3. Daily Expired Coins vs. Ordinary Coins</h2>
+          <p>
+            EchoSim uses a two-tier token system to ensure all active users can date daily for free, while allowing heavy users to run continuous simulations:
+          </p>
+          <div style="background: var(--bg-alt); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--outline); display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; color: var(--text-muted); line-height: 1.6;">
+            <div>
+              <strong style="color: var(--text); font-size: 1rem; display: block; margin-bottom: 0.25rem;">✨ Daily Expired Coins (Free Daily Allowance)</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9rem;">
+                <li><strong>Refill &amp; Expiry</strong>: Automatically refreshed every 24 hours. They do not roll over or accumulate past your daily allowance cap (they reset and expire daily).</li>
+                <li><strong>Deduction Priority</strong>: The system <strong>always prioritizes</strong> consuming your Daily Expired Coins first.</li>
+              </ul>
+            </div>
+            <div style="border-top: 1px solid var(--outline); padding-top: 1rem;">
+              <strong style="color: var(--text); font-size: 1rem; display: block; margin-bottom: 0.25rem;">🪙 Ordinary Coins (Purchased / Permanent Coins)</strong>
+              <ul style="padding-left: 1.2rem; margin: 0; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9rem;">
+                <li><strong>Expiry</strong>: Acquired through in-app purchases or early access boosts. They <strong>never expire</strong> and remain in your wallet permanently until used.</li>
+                <li><strong>Usage</strong>: Automatically consumed only when your Daily Expired Coins are fully depleted.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related articles -->
+        <div style="border-top: 1px solid var(--outline); padding-top: 1.5rem;">
+          <h2 style="font-family: var(--serif); font-weight: 600; font-size: 1.1rem; margin: 0 0 0.85rem 0; color: var(--text);">Related articles</h2>
+          <ul style="padding: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li><a href="/help/articles/reading-your-match-reports.html" style="color: var(--primary); text-decoration: none;">→ Reading Your Match Reports</a></li>
+            <li><a href="/help/articles/how-to-fine-tune-your-echo.html" style="color: var(--primary); text-decoration: none;">→ How to Fine-Tune Your Echo</a></li>
+            <li><a href="/help/articles/questions-and-answers.html#coins-economy" style="color: var(--primary); text-decoration: none;">→ All questions on Coins &amp; economy</a></li>
+          </ul>
+        </div>
+
+
+
+        <a href="/help/" style="font-family: var(--serif); color: var(--primary); text-decoration: none; font-weight: 600; align-self: flex-start;">← Back to Help Center</a>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-v2">
+      <div class="container footer-v2-inner">
+        <span class="logo logo--sm"
+          ><img
+            src="/logo.png"
+            alt="EchoSim logo"
+            class="logo-img logo-img--sm"
+          />EchoSim</span
+        >
+        <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+        <div class="footer-links-v2">
+          <a href="/highlights/">Highlights</a>
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/help/">Help</a>
+          <a
+            href="https://github.com/dating-psychology/Echo-Sim-Official-Specs"
+            target="_blank"
+            rel="noopener"
+            >Product Specs</a
+          >
+          <a href="/privacy.en.html">Privacy Policy</a>
+          <a href="/terms.en.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/site.js" defer></script>
+  </body>
+</html>

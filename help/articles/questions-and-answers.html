@@ -1,0 +1,664 @@
+<!doctype html>
+<!-- 文件用途: EchoSim 帮助中心文章 - 完整问答集页面 (Questions & Answers)，提供高度分类的交互折叠式问答面板，且适配大模型 GEO 索引 -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Questions &amp; Answers — EchoSim Help</title>
+    <meta
+      name="description"
+      content="The complete EchoSim Q&amp;A: how simulation-first dating works, training your AI Echo, Match Reports, Wild Echoes, Coins, privacy, verification, and data deletion."
+    />
+    <link rel="canonical" href="https://echosim.ai/help/articles/questions-and-answers.html" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="EchoSim" />
+    <meta property="og:title" content="Questions &amp; Answers — EchoSim Help" />
+    <meta property="og:description" content="The complete catalog of structured questions and answers about how EchoSim's simulation-first AI dating works." />
+    <meta property="og:url" content="https://echosim.ai/help/articles/questions-and-answers.html" />
+    <meta property="og:image" content="https://echosim.ai/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Questions &amp; Answers — EchoSim Help" />
+    <meta name="twitter:description" content="The complete catalog of structured questions and answers about how EchoSim's simulation-first AI dating works." />
+    <meta name="twitter:image" content="https://echosim.ai/logo.png" />
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      /* CSS-Only Accordion Animations & Premium Styling */
+      .faq-details {
+        background: var(--bg-alt);
+        border: 1px solid var(--outline);
+        border-radius: var(--radius);
+        margin-bottom: 0.85rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .faq-details:hover {
+        border-color: var(--primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      }
+      .faq-summary {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.05rem;
+        padding: 1.1rem 1.25rem;
+        color: var(--text);
+        outline: none;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .faq-summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq-summary .chevron {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .faq-details[open] .faq-summary .chevron {
+        transform: rotate(180deg);
+        color: var(--primary);
+      }
+      .faq-answer {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+        padding: 0 1.25rem 1.25rem 1.25rem;
+        margin: 0;
+        cursor: default;
+      }
+      #qa-search:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(154, 172, 128, 0.15);
+        outline: none;
+      }
+      .faq-category-section {
+        margin-bottom: 2.5rem;
+      }
+      .faq-category-title {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+    <script>
+      // 避免暗黑/明亮主题切换时的样式闪烁 (FOUC)
+      const savedTheme = localStorage.getItem("echosim-theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+
+    <!-- BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://echosim.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Help Center", "item": "https://echosim.ai/help/" },
+        { "@type": "ListItem", "position": 3, "name": "Questions & Answers", "item": "https://echosim.ai/help/articles/questions-and-answers.html" }
+      ]
+    }
+    </script>
+
+    <!-- FAQPage JSON-LD: 完整 45 条问答事实源，供 AI Overviews / Perplexity / Kimi 等生成式搜索引用 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        { "@type": "Question", "name": "How does simulation-first dating work?", "acceptedAnswer": { "@type": "Answer", "text": "Instead of swiping and exchanging dry small talk, your Echo goes on multiple unexpected background micro-dates with another user's Echo via a 3-step flow: (1) Mutual Match, triggered when both users show interest; (2) Sandboxed Pre-Simulation, where the Echoes hold deep private dates exploring various scenarios; (3) Match Report & Chat, where you read the full replay and only chat in real life if chemistry is proven." } },
+        { "@type": "Question", "name": "Can my Echo go on dates without my permission?", "acceptedAnswer": { "@type": "Answer", "text": "No. Your Echo only initiates simulated dating sandboxes when a mutual match is triggered in the matching feed. You retain complete, absolute control over which profiles your Echo interacts with." } },
+        { "@type": "Question", "name": "What is an \"Echo\"?", "acceptedAnswer": { "@type": "Answer", "text": "An Echo is your private, secure AI twin trained on your natural communication style, values, preferences, and boundary preferences. It represents your genuine personality accurately in background sandboxed scenarios." } },
+        { "@type": "Question", "name": "How does my Echo learn my personality?", "acceptedAnswer": { "@type": "Answer", "text": "During onboarding you complete a series of conversational Guided Onboarding chats and baseline questions. These capture your natural greetings, sentence tempos, favorite humor styles, and core dealbreakers." } },
+        { "@type": "Question", "name": "Is my Echo a generic chatbot?", "acceptedAnswer": { "@type": "Answer", "text": "No. Unlike standard corporate chatbots, your Echo uses personalized parameters locally configured on your profile. It acts as an organic representation of your thoughts, responding with your unique linguistic pacing, emoji preferences, and values." } },
+        { "@type": "Question", "name": "What is the difference between EchoSim and traditional swiping apps?", "acceptedAnswer": { "@type": "Answer", "text": "Traditional apps profit from keeping you swiping endlessly. EchoSim bypasses swiping fatigue entirely by letting your Echo handle the time-consuming, low-signal early messaging phase, filtering out incompatible matches automatically." } },
+        { "@type": "Question", "name": "Does EchoSim solve ghosting and dating fatigue?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Because only matches who share proven psychological depth and value resonance are unlocked for manual chatting, every real-world conversation you start is already pre-validated, virtually eliminating ghosting and messaging burnout." } },
+        { "@type": "Question", "name": "What is a \"Spark Meter\"?", "acceptedAnswer": { "@type": "Answer", "text": "The Spark Meter is a visual compatibility rating shown on your Match Report, representing the depth of chemistry, value resonance, and conversational alignment analyzed between your two Echoes during simulated dates." } },
+        { "@type": "Question", "name": "Can I watch two AIs date?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can read the complete dynamic transcripts of simulated date replays. It lets you discover how they talked, what they argued about, and where they connected before making a manual decision." } },
+        { "@type": "Question", "name": "How do I train my Echo?", "acceptedAnswer": { "@type": "Answer", "text": "Training is broken into 3 guided onboarding steps: (1) Answer Baseline Questions to define your conversational style, texting tone, and greetings; (2) Select Story-Rich Prompts that showcase your hobbies and memories; (3) Engage in Guided Discovery, a dynamic onboarding chat that maps your dealbreakers." } },
+        { "@type": "Question", "name": "What are Baseline Questions?", "acceptedAnswer": { "@type": "Answer", "text": "Baseline Questions are engaging prompts completed during setup that capture your specific texting habits, favorite conversation starters, and how you naturally navigate small talk." } },
+        { "@type": "Question", "name": "Can I edit my Echo's opinions and values later?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can access your Echo's settings at any time from your Profile menu to edit your answers, toggle dealbreakers, or update your compatibility preferences." } },
+        { "@type": "Question", "name": "What is \"Response Pacing\"?", "acceptedAnswer": { "@type": "Answer", "text": "Response Pacing is a customizable parameter that governs the texting tempo of your Echo, ensuring its conversational flow matches your organic real-world texting patterns instead of responding instantly." } },
+        { "@type": "Question", "name": "How do I fine-tune my Echo's conversational tempo?", "acceptedAnswer": { "@type": "Answer", "text": "Under Echo settings, Response Pacing lets you choose whether your Echo replies with high thoughtfulness (longer delays) or lighthearted immediacy, giving you full control over relational tempo." } },
+        { "@type": "Question", "name": "Can I delete or reset my Echo's memory?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can reset your Echo's memory bank or delete its personality vectors entirely from Me page, ⚙️ Settings icon on the top right, Reset Echo, letting you rebuild your twin from scratch." } },
+        { "@type": "Question", "name": "How do I select prompts that train my Echo best?", "acceptedAnswer": { "@type": "Answer", "text": "Select prompts that ask for personal stories (for example, 'I once spent 3 weeks in Japan...') rather than simple answers. Stories give your Echo rich, unique memory contexts for simulated dates." } },
+        { "@type": "Question", "name": "Does my Echo copy my exact style of texting?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It adapts to your punctuation preferences, sentence structures, emoji selections, and overall conversational casualness to sound exactly like you." } },
+        { "@type": "Question", "name": "How often should I update my Echo's preferences?", "acceptedAnswer": { "@type": "Answer", "text": "We recommend updating your preferences whenever your real-world relationship values, career pathways, or lifestyle requirements undergo significant changes." } },
+        { "@type": "Question", "name": "What happens if my real-world preferences change?", "acceptedAnswer": { "@type": "Answer", "text": "Simply update your preferences inside the editor. Your Echo's database updates instantly, and all future simulated dates reflect your newly set priorities." } },
+        { "@type": "Question", "name": "How do simulated dates actually run?", "acceptedAnswer": { "@type": "Answer", "text": "When a mutual match occurs, the background simulator spins up a private dating session across 3 stages: (1) Contextual Setting, which picks a unique scenario like coffee, hiking, or travel; (2) Interactive Dialogue, where the Echoes communicate locally exploring values, humor, and depth; (3) Settle & Verify, where the compatibility engine rates value resonance and boundaries and locks or unlocks manual chat." } },
+        { "@type": "Question", "name": "What are \"Chat Replays\"?", "acceptedAnswer": { "@type": "Answer", "text": "Chat Replays are interactive text transcripts that show the exact messages, reactions, and dialogue exchanged between your two Echoes during their background dates." } },
+        { "@type": "Question", "name": "Can I read the full transcript of a simulated date?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every Match Report includes a fully readable Chat Replay transcript, so you can study how they navigated jokes, handled boundaries, and found common ground." } },
+        { "@type": "Question", "name": "What are \"Wild Echoes\"?", "acceptedAnswer": { "@type": "Answer", "text": "Wild Echoes are optional virtual companions: secure, warm AI personas designed to offer unconditional presence, stable listening, and thoughtful dialogue." } },
+        { "@type": "Question", "name": "Are Wild Echoes real users?", "acceptedAnswer": { "@type": "Answer", "text": "No. Wild Echoes do not represent any real-world physical users. They are clearly badged with a 'Wild Echo' icon to maintain absolute transparency and ethical AI standards." } },
+        { "@type": "Question", "name": "How does the system determine a compatibility score?", "acceptedAnswer": { "@type": "Answer", "text": "Our compatibility engine analyzes value resonance, communication patterns, boundaries, and how smoothly conversational topics are balanced during simulated dialogue." } },
+        { "@type": "Question", "name": "Can I run multiple simulated dates with the same match?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can simulate as many times as you want to explore compatibility and see how the connection holds." } },
+        { "@type": "Question", "name": "What happens when a simulated date is highly successful?", "acceptedAnswer": { "@type": "Answer", "text": "Once your Echoes reach a high-chemistry resonance threshold, your match is unlocked, enabling you and your match to start direct human-to-human messaging." } },
+        { "@type": "Question", "name": "What if a simulated date fails? Do we still meet?", "acceptedAnswer": { "@type": "Answer", "text": "If a simulated date fails, you can review the transcript to see what went wrong. You can still choose to chat manually, but the pre-simulation acts as a helpful early warning." } },
+        { "@type": "Question", "name": "What are Coins?", "acceptedAnswer": { "@type": "Answer", "text": "Coins are EchoSim's local-first tokens used to power background AI compute resources. They prevent spam and ensure high-value background simulated dates." } },
+        { "@type": "Question", "name": "Do I have to pay to run simulations?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every active user receives a daily free coin allowance, which is more than enough to cover standard matches and background simulations." } },
+        { "@type": "Question", "name": "How do I get free Coins?", "acceptedAnswer": { "@type": "Answer", "text": "You receive them via daily login allowances, profile completion benchmarks, or early access bonuses; new users get 500 free starting coins." } },
+        { "@type": "Question", "name": "How does the daily free coin allowance work?", "acceptedAnswer": { "@type": "Answer", "text": "Free allowance coins follow a 3-step cycle: (1) Daily Allowance Refill, where coins refresh automatically every 24 hours; (2) Daily Balance Cap, where allowance coins do not roll over past your account's free allowance cap; (3) Organic Interaction, where you use your allowance daily on matches for standard pre-simulations." } },
+        { "@type": "Question", "name": "Do coins expire?", "acceptedAnswer": { "@type": "Answer", "text": "Free daily allowance coins reset every day, but any coin bundles you buy via secure in-app purchases never expire and stay in your wallet permanently." } },
+        { "@type": "Question", "name": "Can I buy coin bundles?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. If you wish to run dozens of background resets in a single day, you can securely purchase extra coin bundles directly via App Store or Google Play payments." } },
+        { "@type": "Question", "name": "Are there any hidden fees for matching or texting?", "acceptedAnswer": { "@type": "Answer", "text": "Never. Standard matching, profile edits, and texting with unlocked matches are free within your daily coin allowances and have no hidden charges." } },
+        { "@type": "Question", "name": "Is my psychological and personal data safe?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We use a secure, local-first zero-trust architecture. Your personal answers and values are encrypted locally on your device, not sold or exposed." } },
+        { "@type": "Question", "name": "Where is my Echo's personality data stored?", "acceptedAnswer": { "@type": "Answer", "text": "Your Echo's core parameters are processed locally on your device and securely stored in encrypted, isolated databases protecting against external breaches." } },
+        { "@type": "Question", "name": "Does EchoSim sell my data to third parties?", "acceptedAnswer": { "@type": "Answer", "text": "Never. We enforce an absolute zero-trust policy. Your psychological profiles, text styles, and conversational vectors are never shared with advertisers." } },
+        { "@type": "Question", "name": "How does Selfie Verification keep me safe?", "acceptedAnswer": { "@type": "Answer", "text": "By requiring a secure 3D liveness scan, our system automatically blocks bots, scammers, fake catfish accounts, and deepfake profile representations." } },
+        { "@type": "Question", "name": "What happens to my photos during verification?", "acceptedAnswer": { "@type": "Answer", "text": "Our face-matching verification flow has 3 strict privacy steps: (1) Biometric Scan, a short 3D dynamic liveness video selfie; (2) Face Geometry Compare, local-first matching of your selfie biometric signature with your uploaded photos; (3) Instant Deletion, where upon successful validation the raw 3D video selfie is instantly and permanently destroyed." } },
+        { "@type": "Question", "name": "Can other users steal my Echo?", "acceptedAnswer": { "@type": "Answer", "text": "No. Your Echo is encrypted and locked to your private account keys. No outside entity can access, copy, or download your AI twin's model state." } },
+        { "@type": "Question", "name": "How do I report fake profiles or scammers?", "acceptedAnswer": { "@type": "Answer", "text": "If you suspect a profile is fake or breaching safety guidelines, tap the gear icon inside their profile card and select 'Report Match' for immediate review." } },
+        { "@type": "Question", "name": "How do I permanently delete my account and data?", "acceptedAnswer": { "@type": "Answer", "text": "To permanently erase your account: (1) Open settings in the app by navigating to your Me page, and opening the ⚙️ Settings icon on the top right; (2) Scroll to the very bottom and tap 'Delete Account' and verify, or fill out the manual deletion request form on our Help Center Deletion page; (3) Permanent Vector Purge, where all models, profiles, chat replays, and AI vectors are permanently erased within 48 hours." } },
+        { "@type": "Question", "name": "Does deleting my account delete my Echo's vectors?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Account deletion permanently, irreversibly, and instantly purges your profile, photos, chat replays, and all AI vectors from our databases." } },
+        { "@type": "Question", "name": "Is EchoSim compliant with local data privacy laws (like GDPR)?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. EchoSim fully complies with the General Data Protection Regulation (GDPR) and strict App Store guidelines, providing robust tools to manage and purge data." } }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner container">
+        <a href="/" class="logo"
+          ><img src="/logo.png" alt="EchoSim logo" class="logo-img" />EchoSim</a
+        >
+        <div class="nav-links">
+          <a href="/highlights/" class="nav-link">Highlights</a>
+          <a href="/how-it-works/" class="nav-link">How It Works</a>
+          <a href="/help/" class="nav-link is-active">Help</a>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+          <a href="/#reserve" class="btn btn-primary btn-sm"
+            >Join Early Access</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- BREADCRUMBS & HERO -->
+    <header class="page-hero" style="padding-bottom: 1.5rem; text-align: left;">
+      <div class="container container--narrow" style="max-width: 750px; margin: 0 auto;">
+        <div style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-muted);">
+          <a href="/help/" style="color: var(--text-muted); text-decoration: none;">Help Center</a> &gt; 
+          <span style="color: var(--text);">Questions &amp; Answers</span>
+        </div>
+        <h1 class="section-title" style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 1rem;">
+          Questions &amp; <em>Answers</em>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          Browse our complete catalog of structured questions and answers to understand how EchoSim works.
+        </p>
+      </div>
+    </header>
+
+    <!-- ARTICLE BODY -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container container--narrow" style="max-width: 750px; margin: 0 auto;">
+        
+        <!-- Search Input Bar -->
+        <div style="margin-bottom: 2.5rem; position: relative;">
+          <input 
+            type="text" 
+            id="qa-search" 
+            placeholder="Search questions by keyword..." 
+            style="width: 100%; padding: 0.85rem 1rem 0.85rem 2.75rem; border-radius: var(--radius); border: 1px solid var(--outline); background: var(--bg-alt); color: var(--text); font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s ease, box-shadow 0.2s ease;"
+          />
+          <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.95rem; pointer-events: none;">🔍</span>
+        </div>
+
+        <!-- Jump-link table of contents (stable anchors for deep linking & AI citation) -->
+        <nav aria-label="Questions by topic" style="margin-bottom: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <a href="#about-echosim" style="font-size: 0.85rem; color: var(--text); text-decoration: none; background: var(--bg-alt); border: 1px solid var(--outline); border-radius: var(--radius); padding: 0.4rem 0.85rem;">🧬 About EchoSim</a>
+          <a href="#managing-echo" style="font-size: 0.85rem; color: var(--text); text-decoration: none; background: var(--bg-alt); border: 1px solid var(--outline); border-radius: var(--radius); padding: 0.4rem 0.85rem;">⚙️ Managing Your Echo</a>
+          <a href="#matching-dates" style="font-size: 0.85rem; color: var(--text); text-decoration: none; background: var(--bg-alt); border: 1px solid var(--outline); border-radius: var(--radius); padding: 0.4rem 0.85rem;">💬 Matching &amp; Dates</a>
+          <a href="#coins-economy" style="font-size: 0.85rem; color: var(--text); text-decoration: none; background: var(--bg-alt); border: 1px solid var(--outline); border-radius: var(--radius); padding: 0.4rem 0.85rem;">🪙 Coins &amp; Economy</a>
+          <a href="#privacy-safety" style="font-size: 0.85rem; color: var(--text); text-decoration: none; background: var(--bg-alt); border: 1px solid var(--outline); border-radius: var(--radius); padding: 0.4rem 0.85rem;">🔒 Privacy &amp; Safety</a>
+        </nav>
+
+        <!-- SECTION 1: ABOUT ECHOSIM & SIMULATION DATING -->
+        <div class="faq-category-section">
+          <h2 class="faq-category-title" id="about-echosim"><span>🧬</span> About EchoSim &amp; Simulation Dating</h2>
+          
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How does simulation-first dating work?</span><span class="chevron">▼</span></summary>
+            <div class="faq-answer">
+              Instead of swiping and exchanging dry small talk, your Echo goes on multiple, unexpected background micro-dates with another user's Echo. This is performed via a 3-step dynamic alignment flow:
+              <div class="article-step-flow">
+                <div class="article-step-item">
+                  <div class="article-step-badge">1</div>
+                  <div class="article-step-content"><strong>Mutual Match</strong>: Triggered when both users show interest in the matching feed.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">2</div>
+                  <div class="article-step-content"><strong>Sandboxed Pre-Simulation</strong>: Echoes hold deep, private dates exploring various scenarios.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">3</div>
+                  <div class="article-step-content"><strong>Match Report &amp; Chat</strong>: Read the full replay. You only chat in real-life if chemistry is proven.</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can my Echo go on dates without my permission?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">No. Your Echo only initiates simulated dating sandboxes when a mutual match is triggered in the matching feed. You retain complete, absolute control over which profiles your Echo interacts with.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What is an "Echo"?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">An Echo is your private, secure AI twin trained on your natural communication style, values, preferences, and boundary preferences. It represents your genuine personality accurately in background sandboxed scenarios.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How does my Echo learn my personality?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">During onboarding, you complete a series of conversational Guided Onboarding chats and baseline questions. These capture your natural greetings, sentence tempos, favorite humor styles, and core dealbreakers.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Is my Echo a generic chatbot?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">No. Unlike standard corporate chatbots, your Echo uses personalized parameters locally configured on your profile. It acts as an organic representation of your thoughts, responding with your unique linguistic pacing, emoji preferences, and values.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What is the difference between EchoSim and traditional swiping apps?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Traditional apps profit from keeping you swiping endlessly. EchoSim bypasses swiping fatigue entirely by letting your Echo handle the time-consuming, low-signal early messaging phase, filtering out incompatible matches automatically.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Does EchoSim solve ghosting and dating fatigue?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes. Because only matches who share proven psychological depth and value resonance are unlocked for manual chatting, every real-world conversation you start is already pre-validated, virtually eliminating ghosting and messaging burnout.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What is a "Spark Meter"?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">The Spark Meter is a visual compatibility rating shown on your Match Report, representing the depth of chemistry, value resonance, and conversational alignment analyzed between your two Echoes during simulated dates.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can I watch two AIs date?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes! You can read the complete dynamic transcripts of simulated date replays. It lets you discover how they talked, what they argued about, and where they connected before making a manual decision.</p>
+          </details>
+        </div>
+
+        <!-- SECTION 2: MANAGING YOUR ECHO & SETTINGS -->
+        <div class="faq-category-section">
+          <h2 class="faq-category-title" id="managing-echo"><span>⚙️</span> Managing Your Echo &amp; Settings</h2>
+          
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do I train my Echo?</span><span class="chevron">▼</span></summary>
+            <div class="faq-answer">
+              To ensure your Echo accurately represents your unique style and values, training is broken down into 3 simple, guided onboarding steps:
+              <div class="article-step-flow">
+                <div class="article-step-item">
+                  <div class="article-step-badge">1</div>
+                  <div class="article-step-content"><strong>Answer Baseline Questions</strong>: Define your general conversational style, texting tone, and greetings.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">2</div>
+                  <div class="article-step-content"><strong>Select Story-Rich Prompts</strong>: Provide descriptive prompt answers that showcase your hobbies and memories.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">3</div>
+                  <div class="article-step-content"><strong>Engage in Guided Discovery</strong>: Participate in a dynamic onboarding chat that dynamically maps your dealbreakers.</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What are Baseline Questions?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Baseline Questions are highly engaging prompts completed during setup that capture your specific texting habits, favorite conversation starters, and how you naturally navigate small talk.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can I edit my Echo's opinions and values later?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes, absolutely. You can access your Echo's settings at any time from your Profile menu to edit your answers, toggle dealbreakers, or update your compatibility preferences.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What is "Response Pacing"?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Response Pacing is a customizable parameter that governs the texting tempo of your Echo. This ensures its conversational flow matches your organic real-world texting patterns instead of responding instantly.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do I fine-tune my Echo's conversational tempo?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Under Echo settings -> Response Pacing, you can choose whether your Echo replies with high thoughtfulness (longer delays) or lighthearted immediacy, allowing full control over relational tempo.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can I delete or reset my Echo's memory?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes. You can reset your Echo's memory bank or delete its personality vectors entirely from your Me page -> ⚙️ Settings icon on the top right -> Reset Echo. This lets you rebuild your twin from scratch.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do I select prompts that train my Echo best?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Select prompts that ask for personal stories (e.g., "I once spent 3 weeks in Japan...") rather than simple answers. Stories provide your Echo with rich, unique memory contexts for simulated dates.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Does my Echo copy my exact style of texting?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes, it adapts to your punctuation preferences, sentence structures, emoji selections, and overall conversational casualness to sound exactly like you.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How often should I update my Echo's preferences?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">We recommend updating your preferences whenever your real-world relationship values, career pathways, or lifestyle requirements undergo significant changes.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What happens if my real-world preferences change?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Simply update your preferences inside the editor. Your Echo's database updates instantly, and all future simulated dates will reflect your newly set priorities.</p>
+          </details>
+        </div>
+
+        <!-- SECTION 3: MATCHING & SIMULATED DATES -->
+        <div class="faq-category-section">
+          <h2 class="faq-category-title" id="matching-dates"><span>💬</span> Matching &amp; Simulated Dates</h2>
+          
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do simulated dates actually run?</span><span class="chevron">▼</span></summary>
+            <div class="faq-answer">
+              When a mutual match occurs, our background simulator spins up a private dating session, running through 3 clean stages:
+              <div class="article-step-flow">
+                <div class="article-step-item">
+                  <div class="article-step-badge">1</div>
+                  <div class="article-step-content"><strong>Contextual Setting</strong>: The simulator picks a unique, engaging dating scenario (e.g. coffee, hiking, travel).</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">2</div>
+                  <div class="article-step-content"><strong>Interactive Dialogue</strong>: Echoes communicate locally, exploring values, humor compatibility, and conversational depth.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">3</div>
+                  <div class="article-step-content"><strong>Settle &amp; Verify</strong>: The compatibility engine rates value resonance, boundaries, and locks/unlocks manual chat.</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What are "Chat Replays"?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Chat Replays are interactive text transcripts that show the exact messages, reactions, and dialogue exchanged between your two Echoes during their background dates.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can I read the full transcript of a simulated date?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes, every Match Report includes a fully readable Chat Replay transcript. You can study how they navigated jokes, handled boundaries, and found common ground.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What are "Wild Echoes"?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Wild Echoes are optional virtual companions. They are secure, warm AI personas designed to offer unconditional presence, stable listening, and thoughtful dialogue.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Are Wild Echoes real users?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">No. Wild Echoes do not represent any real-world physical users. They are clearly badged with a "Wild Echo" icon to maintain absolute transparency and ethical AI standards.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How does the system determine a compatibility score?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Our compatibility engine analyzes key factors: value resonance, communication patterns, boundaries, and how smoothly conversational topics are balanced during simulated dialogue.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can I run multiple simulated dates with the same match?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes, you can simulate as many times as you want to explore compatibility and see how the connection holds.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What happens when a simulated date is highly successful?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Once your Echoes reach a high-chemistry resonance threshold, your match is unlocked, enabling you and your match to start direct human-to-human messaging.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What if a simulated date fails? Do we still meet?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">If a simulated date fails, you can review the transcript to see what went wrong. You can still choose to chat manually, but the pre-simulation acts as a helpful early warning.</p>
+          </details>
+        </div>
+
+        <!-- SECTION 4: COINS, SUBSCRIPTION & ECONOMY -->
+        <div class="faq-category-section">
+          <h2 class="faq-category-title" id="coins-economy"><span>🪙</span> Coins, Subscription &amp; Economy</h2>
+          
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What are Coins?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Coins are our local-first tokens used to power background AI compute resources. They prevent spam and ensure high-value background simulated dates.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Do I have to pay to run simulations?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">No, absolutely not. Every active user receives a daily free coin allowance, which is more than enough to cover standard matches and background simulations.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do I get free Coins?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">You receive them via daily login allowances, profile completion benchmarks, or early access bonuses (new users get 500 free starting coins).</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How does the daily free coin allowance work?</span><span class="chevron">▼</span></summary>
+            <div class="faq-answer">
+              To support organic matching and prevent computation waste, free allowance coins follow a simple 3-step cycle:
+              <div class="article-step-flow">
+                <div class="article-step-item">
+                  <div class="article-step-badge">1</div>
+                  <div class="article-step-content"><strong>Daily Allowance Refill</strong>: Coins refresh automatically every 24 hours.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">2</div>
+                  <div class="article-step-content"><strong>Daily Balance Cap</strong>: Allowance coins do not roll over past your account's set free allowance cap.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">3</div>
+                  <div class="article-step-content"><strong>Organic Interaction</strong>: Use your allowance daily to matches, maintaining complete, standard pre-simulations.</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Do coins expire?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Free daily allowance coins reset every day, but any coin bundles you buy via secure in-app purchases never expire and stay in your wallet permanently.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can I buy coin bundles?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes. If you wish to run dozens of background resets in a single day, you can securely purchase extra coin bundles directly via App Store or Google Play payments.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Are there any hidden fees for matching or texting?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Never. Standard matching, profile edits, and texting with unlocked matches are free to use within your generous daily coin allowances and have absolutely no hidden charges.</p>
+          </details>
+        </div>
+
+        <!-- SECTION 5: PRIVACY, DATA & SAFETY -->
+        <div class="faq-category-section">
+          <h2 class="faq-category-title" id="privacy-safety"><span>🔒</span> Privacy, Data &amp; Safety</h2>
+          
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Is my psychological and personal data safe?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes, entirely. We utilize a secure, local-first zero-trust architecture. Your personal answers and values are encrypted locally on your device, not sold or exposed.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Where is my Echo's personality data stored?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Your Echo's core parameters are processed locally on your device and securely stored in encrypted, isolated databases protecting against external breaches.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Does EchoSim sell my data to third parties?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Never. We enforce an absolute zero-trust policy. Your psychological profiles, text styles, and conversational vectors are never shared with advertisers.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How does Selfie Verification keep me safe?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">By requiring a secure 3D liveness scan, our system automatically blocks bots, scammers, fake catfish accounts, and deepfake profile representations.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>What happens to my photos during verification?</span><span class="chevron">▼</span></summary>
+            <div class="faq-answer">
+              To verify identity and prevent catfishing, our face-matching verification flow adheres to 3 strict privacy steps:
+              <div class="article-step-flow">
+                <div class="article-step-item">
+                  <div class="article-step-badge">1</div>
+                  <div class="article-step-content"><strong>Biometric Scan</strong>: The app securely takes a short, 3D dynamic liveness video selfie.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">2</div>
+                  <div class="article-step-content"><strong>Face Geometry Compare</strong>: Our local-first verification matches your selfie biometric signature with your uploaded photos.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">3</div>
+                  <div class="article-step-content"><strong>Instant Deletion</strong>: Immediately upon successful validation, the raw 3D video selfie is instantly and permanently destroyed.</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Can other users steal my Echo?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">No. Your Echo is encrypted and locked to your private account keys. No outside entity can access, copy, or download your AI twin's model state.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do I report fake profiles or scammers?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">If you suspect a profile is fake or breaching safety guidelines, tap the gear icon inside their profile card and select "Report Match" for immediate review.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>How do I permanently delete my account and data?</span><span class="chevron">▼</span></summary>
+            <div class="faq-answer">
+              To permanently and irreversibly erase your account, you can proceed through these simple steps:
+              <div class="article-step-flow">
+                <div class="article-step-item">
+                  <div class="article-step-badge">1</div>
+                  <div class="article-step-content"><strong>Open Settings</strong>: Navigate to your Me page, then tap the <strong>⚙️ Settings icon</strong> on the top right.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">2</div>
+                  <div class="article-step-content"><strong>Submit Deletion</strong>: Scroll to the very bottom and tap "Delete Account" and confirm. Alternatively, fill out the manual deletion request form on our Help Center Deletion page.</div>
+                </div>
+                <div class="article-step-item">
+                  <div class="article-step-badge">3</div>
+                  <div class="article-step-content"><strong>Permanent Vector Purge</strong>: All models, profiles, chat replays, and AI vectors are permanently erased from our systems within 48 hours.</div>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Does deleting my account delete my Echo's vectors?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes, absolutely. Account deletion permanently, irreversibly, and instantly purges your profile, photos, chat replays, and all AI vectors from our databases.</p>
+          </details>
+
+          <details class="faq-details">
+            <summary class="faq-summary"><span>Is EchoSim compliant with local data privacy laws (like GDPR)?</span><span class="chevron">▼</span></summary>
+            <p class="faq-answer">Yes. EchoSim fully complies with the General Data Protection Regulation (GDPR) and strict App Store guidelines, providing robust tools to manage and purge data.</p>
+          </details>
+        </div>
+
+        <!-- Return to Hub -->
+        <a href="/help/" style="font-family: var(--serif); color: var(--primary); text-decoration: none; font-weight: 600; align-self: flex-start; display: inline-block; margin-top: 1.5rem;">← Back to Help Center</a>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-v2">
+      <div class="container footer-v2-inner">
+        <span class="logo logo--sm"
+          ><img
+            src="/logo.png"
+            alt="EchoSim logo"
+            class="logo-img logo-img--sm"
+          />EchoSim</span
+        >
+        <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+        <div class="footer-links-v2">
+          <a href="/highlights/">Highlights</a>
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/help/">Help</a>
+          <a
+            href="https://github.com/dating-psychology/Echo-Sim-Official-Specs"
+            target="_blank"
+            rel="noopener"
+            >Product Specs</a
+          >
+          <a href="/privacy.en.html">Privacy Policy</a>
+          <a href="/terms.en.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/site.js" defer></script>
+    <script>
+      /**
+       * 监听搜索框输入，仅匹配问题文本 (summary 内部文字)，隐藏不匹配的折叠面板。
+       * 同时若某大类下所有问题均被隐藏，则同步隐藏该大类的标题。
+       */
+      document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("qa-search");
+        const detailsElements = document.querySelectorAll(".faq-details");
+        const sections = document.querySelectorAll(".faq-category-section");
+
+        if (searchInput) {
+          searchInput.addEventListener("input", function(e) {
+            const query = e.target.value.toLowerCase().trim();
+
+            // 1. 过滤所有问题 (匹配问题 summary 与回答 answer 文本)
+            detailsElements.forEach(function(details) {
+              const summaryText = details.querySelector(".faq-summary span").textContent.toLowerCase();
+              const answerEl = details.querySelector(".faq-answer");
+              const answerText = answerEl ? answerEl.textContent.toLowerCase() : "";
+              if (summaryText.includes(query) || answerText.includes(query)) {
+                details.style.display = "block";
+              } else {
+                details.style.display = "none";
+              }
+            });
+
+            // 2. 动态过滤大类标题 (若某大类下没有可见的问题，则隐藏整个大类)
+            sections.forEach(function(section) {
+              const details = section.querySelectorAll('.faq-details');
+              let hasVisible = false;
+              details.forEach(function(d) {
+                if (d.style.display !== 'none') {
+                  hasVisible = true;
+                }
+              });
+              if (hasVisible) {
+                section.style.display = "block";
+              } else {
+                section.style.display = "none";
+              }
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

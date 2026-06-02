@@ -1,0 +1,313 @@
+<!doctype html>
+<!-- 文件用途: EchoSim 帮助中心文章 - 账号注销与数据清理申请页面，符合 App Store Guideline 5.1.1(v) 及 GDPR 合规要求 -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account & Data Deletion — EchoSim Help</title>
+    <meta
+      name="description"
+      content="How to permanently delete your EchoSim account and purge all AI data — in-app (Me page → ⚙️ Settings icon on the top right → Delete Account) or via the online request form. GDPR compliant."
+    />
+    <link rel="canonical" href="https://echosim.ai/help/articles/account-and-data-deletion.html" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="EchoSim" />
+    <meta property="og:title" content="Account & Data Deletion — EchoSim Help" />
+    <meta property="og:description" content="A direct, simple guide on how to permanently delete your EchoSim account and purge all associated AI data." />
+    <meta property="og:url" content="https://echosim.ai/help/articles/account-and-data-deletion.html" />
+    <meta property="og:image" content="https://echosim.ai/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Account & Data Deletion — EchoSim Help" />
+    <meta name="twitter:description" content="A direct, simple guide on how to permanently delete your EchoSim account and purge all associated AI data." />
+    <meta name="twitter:image" content="https://echosim.ai/logo.png" />
+
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script>
+      // 避免暗黑/明亮主题切换时的样式闪烁 (FOUC)
+      const savedTheme = localStorage.getItem("echosim-theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+
+    <!-- Article + Breadcrumb + HowTo structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Account & Data Deletion",
+      "description": "How to permanently delete your EchoSim account and purge all associated AI data, in-app or via the online request form.",
+      "inLanguage": "en",
+      "datePublished": "2026-05-31",
+      "dateModified": "2026-06-01",
+      "author": { "@type": "Organization", "name": "EchoSim Team" },
+      "publisher": { "@type": "Organization", "name": "EchoSim", "logo": { "@type": "ImageObject", "url": "https://echosim.ai/logo.png" } },
+      "mainEntityOfPage": "https://echosim.ai/help/articles/account-and-data-deletion.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://echosim.ai/" },
+        { "@type": "ListItem", "position": 2, "name": "Help Center", "item": "https://echosim.ai/help/" },
+        { "@type": "ListItem", "position": 3, "name": "Account & Data Deletion", "item": "https://echosim.ai/help/articles/account-and-data-deletion.html" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to delete your EchoSim account in the app",
+      "description": "Permanently and irreversibly delete your EchoSim account and all AI data directly in the mobile app.",
+      "step": [
+        { "@type": "HowToStep", "name": "Open the Me page", "text": "Open the EchoSim app on your device and navigate to your Me page." },
+        { "@type": "HowToStep", "name": "Open Settings", "text": "Open the Settings panel (⚙️ icon) on the top right." },
+        { "@type": "HowToStep", "name": "Scroll to bottom", "text": "Scroll down to the very bottom and tap 'Delete Account'." },
+        { "@type": "HowToStep", "name": "Confirm deletion", "text": "Confirm deletion to permanently erase your profile and AI data." }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner container">
+        <a href="/" class="logo"
+          ><img src="/logo.png" alt="EchoSim logo" class="logo-img" />EchoSim</a
+        >
+        <div class="nav-links">
+          <a href="/highlights/" class="nav-link">Highlights</a>
+          <a href="/how-it-works/" class="nav-link">How It Works</a>
+          <a href="/help/" class="nav-link">Help</a>
+          <button class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+          <a href="/#reserve" class="btn btn-primary btn-sm"
+            >Join Early Access</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- BREADCRUMBS & HERO -->
+    <header class="page-hero" style="padding-bottom: 1.5rem; text-align: left;">
+      <div class="container container--narrow" style="max-width: 700px; margin: 0 auto;">
+        <div style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-muted);">
+          <a href="/help/" style="color: var(--text-muted); text-decoration: none;">Help Center</a> &gt; 
+          <span style="color: var(--text);">Privacy &amp; Security</span>
+        </div>
+        <h1 class="section-title" style="font-size: 2.25rem; line-height: 1.2; margin-bottom: 1rem;">
+          Account &amp; Data <em>Deletion</em>
+        </h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          A direct, simple guide on how to permanently delete your EchoSim account and purge all associated AI data.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0.75rem 0 0 0;">By the EchoSim Team · Last updated June 1, 2026</p>
+      </div>
+    </header>
+
+    <!-- ARTICLE BODY -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container container--narrow" style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem;">
+        
+        <div style="background: var(--bg-alt); border-left: 3px solid var(--primary); padding: 1rem 1.25rem; border-radius: var(--radius); font-size: 0.95rem; line-height: 1.65; color: var(--text);">
+          <strong>In short:</strong> You can delete your EchoSim account at any time in the app via Me page → ⚙️ Settings icon on the top right → Delete Account. If you've already uninstalled, submit the online request form below. Either way, your account, photos, chat replays, and AI vectors are permanently and irreversibly purged within 48 hours.
+        </div>
+
+        <div style="color: var(--text); font-size: 0.95rem; line-height: 1.7; display: flex; flex-direction: column; gap: 1.25rem;">
+          <p>
+            At EchoSim, we strongly believe in user privacy and absolute data ownership. When you choose to delete your account, your entire digital footprint is completely and irreversibly purged from our systems. This includes your high-dimensional AI clone (your Echo), communication records, matching history, and psychological/linguistic vectors.
+          </p>
+
+          <h2 id="delete-in-app" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">Option 1: Delete via the mobile app (Recommended)</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            The fastest and most secure way to delete your account is directly inside the EchoSim mobile application:
+          </p>
+          <div class="article-step-flow">
+            <div class="article-step-item">
+              <div class="article-step-badge">1</div>
+              <div class="article-step-content">Open the <strong>EchoSim</strong> app and navigate to your <strong>Me page</strong>.</div>
+            </div>
+            <div class="article-step-item">
+              <div class="article-step-badge">2</div>
+              <div class="article-step-content">Open the <strong>⚙️ Settings icon</strong> on the top right.</div>
+            </div>
+            <div class="article-step-item">
+              <div class="article-step-badge">3</div>
+              <div class="article-step-content">Scroll down to the very bottom and tap <strong>Delete Account</strong>.</div>
+            </div>
+            <div class="article-step-item">
+              <div class="article-step-badge">4</div>
+              <div class="article-step-content"><strong>Confirm deletion</strong> of your account.</div>
+            </div>
+          </div>
+
+          <h2 id="delete-online" style="font-family: var(--serif); font-weight: 600; font-size: 1.3rem; margin-top: 1rem; color: var(--text);">Option 2: Request manual deletion online</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+            If you have already uninstalled the app and want us to manually purge your data, please fill out the request form below. We will process your request within 48 hours and send a confirmation email.
+          </p>
+
+          <!-- Interactive Deletion Form -->
+          <div style="background: var(--bg-alt); padding: 1.75rem; border-radius: var(--radius); border: 1px solid var(--outline); margin-top: 0.5rem;">
+            <form id="deletion-form" style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text);">Registered Email Address *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="entry.1545983563" 
+                  required 
+                  placeholder="you@example.com" 
+                  style="padding: 0.85rem 1rem; border-radius: var(--radius); border: 1px solid var(--outline); background: var(--bg); color: var(--text); font-family: inherit; font-size: 0.95rem;"
+                />
+              </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="reason" style="font-size: 0.85rem; font-weight: 600; color: var(--text);">Why are you leaving? (Optional)</label>
+                <textarea 
+                  id="reason" 
+                  name="entry.1865520932" 
+                  rows="4" 
+                  placeholder="Please tell us how we can improve EchoSim..." 
+                  style="padding: 0.85rem 1rem; border-radius: var(--radius); border: 1px solid var(--outline); background: var(--bg); color: var(--text); font-family: inherit; font-size: 0.95rem; resize: vertical;"
+                ></textarea>
+              </div>
+
+              <!-- Subscription & In-App Deletion Recommendation Warning -->
+              <div style="background: rgba(199, 137, 76, 0.08); border-left: 3px solid #c7894c; padding: 0.9rem 1.1rem; border-radius: var(--radius); font-size: 0.85rem; line-height: 1.55; color: var(--text); margin-top: 0.5rem;">
+                <strong>⚠️ Active Subscriptions &amp; App Store Billing:</strong> If you have an active EchoSim subscription purchased via the Google Play Store or Apple App Store, **submitting this request online WILL NOT cancel your recurring subscription billing.** You must manually cancel it in your device's subscription settings. To ensure clean termination of both account data and subscription billing, we **strongly recommend** using the in-app deletion flow (**Option 1**) instead of this manual form.
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                <input type="checkbox" id="confirm" name="confirm" required style="margin-top: 0.25rem;" />
+                <label for="confirm" style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                  I understand that account deletion is permanent. All matches, Echo data, and chat transcripts will be irreversibly erased.
+                </label>
+              </div>
+
+              <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                <input type="checkbox" id="subscription-confirm" name="subscription_confirm" required style="margin-top: 0.25rem;" />
+                <label for="subscription-confirm" style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+                  I understand that I must manually cancel store subscriptions (Google Play / App Store) and acknowledge that submitting in-app is highly recommended. *
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="align-self: flex-start; padding: 0.85rem 2rem; font-size: 0.95rem; margin-top: 0.5rem;">
+                Submit Deletion Request
+              </button>
+            </form>
+            
+            <div id="deletion-success" style="display: none; background: rgba(154, 172, 128, 0.1); border: 1px solid #9aac80; padding: 1.25rem; border-radius: var(--radius); color: var(--text);">
+              <p style="font-weight: 600; margin-bottom: 0.25rem; color: #9aac80;">✓ Request Received</p>
+              <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-muted);">We have received your request. We'll send a confirmation link to verify your email before purging your data.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related articles -->
+        <div style="border-top: 1px solid var(--outline); padding-top: 1.5rem;">
+          <h2 style="font-family: var(--serif); font-weight: 600; font-size: 1.1rem; margin: 0 0 0.85rem 0; color: var(--text);">Related articles</h2>
+          <ul style="padding: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li><a href="/help/articles/selfie-verification-and-security.html" style="color: var(--primary); text-decoration: none;">→ Selfie Verification &amp; Security</a></li>
+            <li><a href="/help/articles/questions-and-answers.html#privacy-safety" style="color: var(--primary); text-decoration: none;">→ All questions on privacy, data &amp; safety</a></li>
+            <li><a href="/privacy.en.html" style="color: var(--primary); text-decoration: none;">→ Privacy Policy</a></li>
+          </ul>
+        </div>
+
+
+        <a href="/help/" style="font-family: var(--serif); color: var(--primary); text-decoration: none; font-weight: 600; align-self: flex-start;">← Back to Help Center</a>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-v2">
+      <div class="container footer-v2-inner">
+        <span class="logo logo--sm"
+          ><img
+            src="/logo.png"
+            alt="EchoSim logo"
+            class="logo-img logo-img--sm"
+          />EchoSim</span
+        >
+        <p class="footer-copy-v2">© 2026 EchoSim. All rights reserved.</p>
+        <div class="footer-links-v2">
+          <a href="/highlights/">Highlights</a>
+          <a href="/how-it-works/">How It Works</a>
+          <a href="/help/">Help</a>
+          <a
+            href="https://github.com/dating-psychology/Echo-Sim-Official-Specs"
+            target="_blank"
+            rel="noopener"
+            >Product Specs</a
+          >
+          <a href="/privacy.en.html">Privacy Policy</a>
+          <a href="/terms.en.html">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/site.js" defer></script>
+    <script>
+      /**
+       * @file account-and-data-deletion.html
+       * @description 监听在线申请注销表单，阻止默认提交动作，并通过 fetch 以 no-cors 模式将数据异步投递至 Google Form 收集后台。
+       */
+      const form = document.getElementById("deletion-form");
+      const successDiv = document.getElementById("deletion-success");
+
+      // ⚠️ 请在此处填入您创建的 Google Form 真实 formResponse URL ⚠️
+      const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSczIfkSO6P-rQCfpKmZcqpA40uhHnCkl6L0seMyoMuu73t0rw/formResponse";
+
+      if (form) {
+        form.addEventListener("submit", async function(e) {
+          e.preventDefault();
+
+          // 锁定提交按钮，防止用户重复快速点击提交
+          const submitButton = form.querySelector("button[type='submit']");
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting...";
+          }
+
+          const formData = new FormData(form);
+
+          try {
+            // 发送 POST 请求投递数据，使用 no-cors 规避跨域限制以成功送达 Google Forms
+            await fetch(GOOGLE_FORM_URL, {
+              method: "POST",
+              mode: "no-cors",
+              body: formData
+            });
+
+            // 成功接收后，隐藏表单，切换显示预先置好的成功提示区域
+            form.style.display = "none";
+            successDiv.style.display = "block";
+          } catch (error) {
+            console.error("提交账号注销表单时发生网络异常:", error);
+            alert("Failed to submit request. Please try again or email support@echosim.ai directly.");
+            
+            // 发生错误时，恢复按钮状态供重新提交
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = "Submit Deletion Request";
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
